@@ -1,5 +1,14 @@
 .App {
-  text-align: center;
+  text-align: left;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("fondo1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .App-logo {
@@ -36,3 +45,17 @@
     transform: rotate(360deg);
   }
 }
+.titulo-label {
+  text-align: left;
+  font-weight: bold;
+}
+.boton-color {
+  text-align: center;
+  background-color: blue;
+  color: white;
+  border: 2px solid blue;
+  border-radius: 5px; 
+  padding: 10px 20px; 
+}
+
+
