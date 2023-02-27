@@ -92,7 +92,7 @@ export default function IniciarSesion() {
               >
                 Ingresar
               </button> <br></br><br></br>
-              <Link>Aun no tienes una Cuenta</Link>
+              <Link>¿Olvidaste tu contraseña?</Link>
             </h5>
             
           </form>
