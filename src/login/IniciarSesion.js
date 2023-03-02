@@ -10,6 +10,7 @@ export default function IniciarSesion() {
   const [usuario, setUsername] = useState('');
   const [contrasena, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [esAdmin, setEsAdmin] = useState(false);
 
   const toggleMostrarContrasena = () => {
     setMostrarContrasena(!mostrarContrasena);
@@ -31,6 +32,25 @@ export default function IniciarSesion() {
         .then(response => {
           console.log(response.data);
           if (response.data == true) {
+            axios.get('http://localhost:8080/api/usuarios/esAdministrador', {
+              params: {
+                usuario: usuario
+              }
+            })
+            .then(response => {
+              console.log(response.data);
+              if (response.data == true) {
+                console.log("Es admnistrador")
+                setEsAdmin(true); // Actualiza el estado de esAdmin
+              } else {
+                console.log("No es administrador")
+                setEsAdmin(false); // Actualiza el estado de esAdmin
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+            /** */
             console.log("Inicio de sesion exitoso")
             navigate("/vprincipal")
           } else {
