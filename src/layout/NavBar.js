@@ -27,7 +27,7 @@ export default function NavBar() {
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <li><a class="dropdown-item" href="#">INVENTARIO</a></li>
         <li><a class="dropdown-item" href="#">EMPLEADOS</a></li>
-        <li><a class="dropdown-item" href="#">CLIENTES</a></li>
+        <li><a class="dropdown-item" href="/vlcliente">CLIENTES</a></li>
         <li><a class="dropdown-item" href="#">PROVEEDORES</a></li>
       </ul>
     </div>
