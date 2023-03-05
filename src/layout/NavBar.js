@@ -1,8 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { useNavigate,Link } from "react-router-dom";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+  function cerrarsesion() {
+    localStorage.setItem('token', '');
+    navigate('/');
+
+  }
+  
+  
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -44,9 +53,7 @@ export default function NavBar() {
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Cerrar Sesion</a>
-    </li>
+    <button onClick={cerrarsesion}>Cerrar Sesion</button>
   </ul>
 </div>
 

@@ -21,52 +21,67 @@ export default function IniciarSesion() {
     // Validar campos de formulario antes de enviar
     if (!usuario || !contrasena) {
       setError('Por favor ingrese su usuario y contraseña');
+      setTimeout(() => {
+        setError("");
+    }, 2000);
       return;
     } else {
-      axios.get('http://localhost:8080/api/usuarios/validarLogin', {
-        params: {
-          usuario: usuario,
-          contrasena: contrasena
-        }
-      })
-        .then(response => {
-          console.log(response.data);
-          if (response.data == true) {
-            axios.get('http://localhost:8080/api/usuarios/esAdministrador', {
-              params: {
-                usuario: usuario
-              }
-            })
+      const logins = {
+        usuario: usuario,
+        contra: contrasena
+      };
+
+      const fetchData = async () => {
+        const response = await axios.post("http://localhost:8080/api/usuarios/login", logins)
             .then(response => {
-              console.log(response.data);
-              if (response.data == true) {
-                console.log("Es admnistrador")
-                setEsAdmin(true); // Actualiza el estado de esAdmin
-              } else {
-                console.log("No es administrador")
-                setEsAdmin(false); // Actualiza el estado de esAdmin
+              if(response!=null || response!=""){  
+              console.log(response.data.token);
+                localStorage.setItem('token', response.data.token);
+                if(usuario=="administrador"){
+                  navigate("/vprincipal")
+                  console.log("Es admin")
+                }else{
+                  navigate("/vprincipal")
+                  console.log("no es admin")
+                }
+              }else{
+                setError("Usuario o contraseña incorrecta");
+                setTimeout(() => {
+                  setError("");
+              }, 2000);
               }
+                
+
             })
             .catch(error => {
-              console.log(error);
+                console.log(error);
+                setError("Usuario o contraseña incorrecta");
+                setTimeout(() => {
+                  setError("");
+              }, 2000);
             });
-            /** */
-            console.log("Inicio de sesion exitoso")
-            navigate("/vprincipal")
-          } else {
-            console.log("Inicio de sesion fallido")
-            setError('La combinación de correo electrónico y contraseña no es válida: ' + usuario + ' ' + contrasena);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    };
+    fetchData();
+
+    return async () => {
+        // Realiza cualquier limpieza necesaria
+    };
+
+
+
+        
 
     }
   }
   return (
+    
     <form onSubmit={handleSubmit}>
-      {error && <p>{error}</p>}
+      {error && (
+                <div className="alert alert-danger text-center" role="alert">
+                    {error}
+                </div>
+            )}
+      
       <div className="container  py-5">
         <div className="col-md-4 border rounded p-4 mt-2 shadow vh-75 mx-auto">
           <h2 className="text-center m-4"> Iniciar sesión</h2>

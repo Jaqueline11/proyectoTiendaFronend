@@ -2,8 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import './Estilo.css';
+import { useNavigate } from "react-router-dom";
 
 export default function PedidoCliente() {
+    
+    
+    
+    const navigate = useNavigate();
     const [cedula, setCedula] = useState(null);
     const [nombre, setNombre] = useState('');
     const [direccion, setdireccion] = useState('');
@@ -26,6 +31,27 @@ export default function PedidoCliente() {
     })
 
     const { fecha_pedido, precio_total, id_cliente } = inventario;
+
+    axios.interceptors.request.use(
+        config => {
+          const token = localStorage.getItem('token');
+          if(token==""){
+            setError("Token No encontrado");
+            
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
+
+          }  
+
+          if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+          }
+          return config;
+        },
+        error => Promise.reject(error)
+
+      );
 
 
     const AgregarProducto = () => {
@@ -147,7 +173,7 @@ export default function PedidoCliente() {
 
     const onInputChange = (e) => {
         setInventario({ ...inventario, [e.target.name]: e.target.value });
-    };
+         };
 
     async function handleChange(event) {
         setCedula(event.target.value)
