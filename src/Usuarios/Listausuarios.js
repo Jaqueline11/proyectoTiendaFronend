@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function Listausuarios() {
     const navigate = useNavigate();
@@ -30,7 +31,6 @@ export default function Listausuarios() {
         error => Promise.reject(error)
 
     );
-
     useEffect(() => {
         loadUsers();
 
@@ -43,16 +43,19 @@ export default function Listausuarios() {
 
     };
 
-    const deleteUser = async (id,usuario) => {
-        if(usuario!="administrador"){
-        await axios.delete(`http://localhost:8080/api/usuarios/eliminarusuario?id=${id}`);
-        }else{
+    const deleteUser = async (id, usuario) => {
+        if (usuario != "administrador") {
+            await axios.delete(`http://localhost:8080/api/usuarios/eliminarusuario?id=${id}`);
+        } else {
             setError("No se puede eliminar este usuario")
             setTimeout(() => {
                 setError("")
             }, 2000);
         }
         loadUsers();
+    }
+    function abriradd() {
+        navigate("/vaddcliente")
     }
 
 
@@ -65,7 +68,7 @@ export default function Listausuarios() {
                 </div>
             )}
             <br></br>
-            <button style={{ position: 'fixed', right: "140px" }}>CREAR USUARIO</button>
+            <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR USUARIO</button>
             <br></br>
             <br></br>
 
@@ -89,10 +92,15 @@ export default function Listausuarios() {
                                 <td>{user.persona.direccion}</td>
                                 <td>{user.persona.genero}</td>
                                 <td>
-                                    <button style={{ marginLeft: '10%' }}>Modificar</button>
+                                    <Link
+                                        className="btn btn-outline-primary mx-2"
+                                        to={`/edituser/${user.usuario}`}
+                                    >
+                                        Editar
+                                    </Link>
                                     <button style={{ marginLeft: '10%' }}
                                         className="btn btn-danger mx-2"
-                                        onClick={() => deleteUser(user.id_usuarios,user.usuario)}>Eliminar</button>
+                                        onClick={() => deleteUser(user.id_usuarios, user.usuario)}>Eliminar</button>
                                 </td>
 
                             </tr>

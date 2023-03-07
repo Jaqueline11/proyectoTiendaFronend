@@ -6,6 +6,8 @@ import IniciarSesion from './login/IniciarSesion';
 import NavBar from './layout/NavBar';
 import PedidoCliente from './PedidcoClientes/PedidoCliente';
 import Listausuarios from './Usuarios/Listausuarios';
+import Crearusuario from './Usuarios/Crearusuario';
+import EditUsuario from './Usuarios/EditUsuario';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route exact path="/vprincipal" element={<div><NavBar /><VentanaPrincipal /></div>} />
         <Route exact path="/vpedidocliente" element={<div><NavBar /><PedidoCliente /></div>} />
         <Route exact path="/vlcliente" element={<div><NavBar /><Listausuarios /></div>} />
+        <Route exact path="/vaddcliente" element={<div><NavBar /><Crearusuario /></div>} />
+        <Route exact path="/edituser/:id" element={<div><NavBar /><EditUsuario /></div>} />
       </Routes>
       
     </Router>
