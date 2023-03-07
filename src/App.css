@@ -1,14 +1,17 @@
 .App {
   text-align: left;
-  height: 100vh;
-  width: 100vw;
-  background-image: url("fondo1.png");
   background-repeat: no-repeat;
   background-size: cover;                                
 }
 body {
   margin: 0;
   padding: 0;
+}
+.login{
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("fondo1.png");
 }
 
 .App-logo {
@@ -57,5 +60,57 @@ body {
   border-radius: 5px; 
   padding: 10px 20px; 
 }
+.tabla-estilo {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 20px;
+  /* Agrega otros estilos si lo necesitas */
+}
+.container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+input {
+  margin-bottom: 1px; /* Agrega un margen inferior para separar el campo de entrada de texto de la tabla */
+}
+
+.busqueda{
+  width: 100%;
+  display: inline-block;
+  
+}
+.columnas{
+  background-color: #ab9ec7;
+  border: 1px solid #ddd;
+  
+}
+.filas{
+ 
+  border-bottom: 1px solid #746e6e;
+}
+i.fas.fa-filter {
+  font-size: 24px;
+  color: blue;
+}
+.search-container {
+  width: 300px;
+}
+.alado{
+  margin-left: 20px;
+}
+.estilo-buscar{
+  width: 500px;
+  border-radius: 3px;
+}
+.estilo-filtrar{
+  margin-left: 20px;
+}
+
+
+
 
 

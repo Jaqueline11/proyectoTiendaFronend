@@ -74,7 +74,7 @@ export default function IniciarSesion() {
     }
   }
   return (
-    
+    <div className='login'>
     <form onSubmit={handleSubmit}>
       {error && (
                 <div className="alert alert-danger text-center" role="alert">
@@ -134,5 +134,6 @@ export default function IniciarSesion() {
         </div>
       </div>
     </form>
+    </div>
   );
 }
