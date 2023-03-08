@@ -13,6 +13,7 @@ export default function Inventario() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [users, setUsers] = useState([]);
+    const [selectedType, setSelectedType] = useState('');
 
 
     // función para manejar la búsqueda
@@ -69,8 +70,24 @@ export default function Inventario() {
         }
 
     };
+    /**Opciones */
+    const handleFilterClick = async (event) => {
+        const type = event.target.innerText;
+        setSelectedType(type);
+        if (type == "TODOS") {
+            loadUsers();
+        } else {
+            console.log(type + "tipoooooooooooo")
+            const response = await axios.get(`http://localhost:8080/api/inventario/tipo/${type}`);
+            setSearchResults(response.data);
+            console.log(response + "datoooooooooo")
+        }
+    };
 
-    const resultsd = searchTerm ? searchResults : users;
+
+    const resultsd = searchTerm ? searchResults :
+        selectedType ? users.filter((user) => user.tipo === selectedType) :
+            users;
 
 
     return (
@@ -88,44 +105,54 @@ export default function Inventario() {
                             Filtrar
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                            <li><a class="dropdown-item" href="#">BEBIDAS</a></li>
-                            <li><a class="dropdown-item" href="#">CERVEZA</a></li>
-                            <li><a class="dropdown-item" href="#">LICORES</a></li>
-                            <li><a class="dropdown-item" href="#">ABARROTES</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Bebidas</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Tipo del producto 1</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>LICORES</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>ABARROTES</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={loadUsers}>TODOS</a></li>
                         </ul>
+
                     </div>
                 </div>
             </form>
 
-            <table className="tabla-estilo">
-                <thead>
-                    <tr className="columnas">
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Cantidad</th>
-                        <th>valor</th>
-                        <th>Fecha de caducidad</th>
-                        <th>Tipo</th>
-                    </tr>
-                </thead>
 
-                <tbody className="fila">{
-                    resultsd.map((inventario, index) => (
-                        <tr key={index}>
-                            <td>{inventario.codigo}</td>
-                            <td>{inventario.nombre} </td>
-                            <td>{inventario.descripcion}</td>
-                            <td>{inventario.cantidad}</td>
-                            <td>{inventario.valor}</td>
-                            <td>{inventario.fecha_caducidad}</td>
-                            <td>{inventario.tipo}</td>
+            {resultsd.length === 0 ? (
+                <div className="no-results">
+                    <img src="NoEncontrado.png" />
+                    <p>No se encontraron resultadosss</p>
+                </div>
+            ) : (
+                <table className="tabla-estilo">
+                    <thead>
+                        <tr className="columnas">
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Cantidad</th>
+                            <th>valor</th>
+                            <th>Fecha de caducidad</th>
+                            <th>Tipo</th>
                         </tr>
-                    ))
-                }
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody className="fila">{
+                        resultsd.map((inventario, index) => (
+                            <tr key={index}>
+                                <td>{inventario.codigo}</td>
+                                <td>{inventario.nombre} </td>
+                                <td>{inventario.descripcion}</td>
+                                <td>{inventario.cantidad}</td>
+                                <td>{inventario.valor}</td>
+                                <td>{inventario.fecha_caducidad}</td>
+                                <td>{inventario.tipo}</td>
+                            </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+            )}
+
         </div>
     );
 }

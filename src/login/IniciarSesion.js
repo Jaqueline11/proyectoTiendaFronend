@@ -38,9 +38,11 @@ export default function IniciarSesion() {
               console.log(response.data.token);
                 localStorage.setItem('token', response.data.token);
                 if(usuario=="administrador"){
+                  setEsAdmin(true);
                   navigate("/vprincipal")
                   console.log("Es admin")
                 }else{
+                  setEsAdmin(false);
                   navigate("/vprincipal")
                   console.log("no es admin")
                 }
