@@ -66,7 +66,7 @@ export default function Inventario() {
 
 
     return (
-        <div className="container">
+        <div className="containermi">
             <form onSubmit={handleSearch}>
                 <div className="input-group mb-3" >
                     <input type="text" className="estilo-buscar" FontAwesomeIcon icon={faSearch}  placeholder="Buscar" aria-label="Buscar" aria-describedby="buscar-boton"

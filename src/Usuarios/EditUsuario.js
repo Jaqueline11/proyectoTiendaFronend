@@ -153,7 +153,7 @@ export default function EditUsuario() {
 
     }, []);
     return (
-        <div className="container">
+        <div className="container" style={{ marginTop: "50px" }}>
             {error && (
                 <div className="alert alert-danger text-center" role="alert">
                     {error}
@@ -189,11 +189,13 @@ export default function EditUsuario() {
                                 style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
                                 placeholder="Ingrese el nombre"
                                 value={user.persona.nombre}
+                                readOnly
                                 onChange={handlenombreChange} />
                             Apellido:
                             <input
                                 placeholder="Ingrese el apellido"
                                 value={user.persona.apellido}
+                                readOnly
                                 onChange={handleapellidoChange}
                                 style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
                             <br />
@@ -251,7 +253,7 @@ export default function EditUsuario() {
                                 />
                             </button>
                             <br /><br />
-                            <button style={{ marginLeft: "100px" }} type="submit" className="btn btn-outline-primary" >GUARDAR USUARIO</button>
+                            <button style={{ marginLeft: "170px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
                             <button style={{ marginLeft: "20px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
 
 

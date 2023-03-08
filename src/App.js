@@ -9,6 +9,9 @@ import Listausuarios from './Usuarios/Listausuarios';
 import Crearusuario from './Usuarios/Crearusuario';
 import EditUsuario from './Usuarios/EditUsuario';
 import Inventario from './Inventario/Inventario';
+import Proveedores from './Proveedores/Proveedores';
+import ListaProveedor from './Proveedores/ListaProveedor';
+import EditProveedor from './Proveedores/EditProveedor';
 
 
 
@@ -26,6 +29,9 @@ function App() {
         <Route exact path="/vaddcliente" element={<div><NavBar /><Crearusuario /></div>} />
         <Route exact path="/edituser/:id" element={<div><NavBar /><EditUsuario /></div>} />
         <Route exact path="/vInventario" element={<div><NavBar /><Inventario /></div>} />
+        <Route exact path="/vProveedores" element={<div><NavBar /><Proveedores /></div>} />
+        <Route exact path="/vListaProveedor" element={<div><NavBar /><ListaProveedor /></div>} />
+        <Route exact path="/editProveedor/:id_proveedor" element={<div><NavBar /><EditProveedor /></div>} />
       </Routes>
       
     </Router>

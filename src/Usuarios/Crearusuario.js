@@ -152,7 +152,7 @@ export default function Crearusuario() {
 
   return (
 
-    <div className="container">
+    <div className="container" style={{ marginTop: "50px" }}>
       {error && (
         <div className="alert alert-danger text-center" role="alert">
           {error}
@@ -247,7 +247,7 @@ export default function Crearusuario() {
                 />
               </button>
               <br /><br />
-              <button style={{ marginLeft: "100px" }} type="submit" className="btn btn-outline-primary" >GUARDAR USUARIO</button>
+              <button style={{ marginLeft: "170px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
               <button style={{ marginLeft: "20px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
 
 
