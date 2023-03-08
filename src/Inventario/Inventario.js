@@ -18,7 +18,7 @@ export default function Inventario() {
     // función para manejar la búsqueda
     const handleSearch = async (event) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/inventario/tipo/Bebidas${searchTerm}`);
+            const response = await axios.get(`http://localhost:8080/api/inventario/tipo/Bebidas?nombre=${searchTerm}`);
             setSearchResults(response.data);
             console.log(searchTerm)
         } catch (error) {
@@ -58,8 +58,16 @@ export default function Inventario() {
         setUsers(result.data);
 
     };
-    const handleChange = (event) => {
+    const handleChange = async (event) => {
         setSearchTerm(event.target.value);
+        if (event.target.value != null && event.target.value != "") {
+            const result = await axios.get(`http://localhost:8080/api/inventario/nombre/${event.target.value}`);
+
+            setSearchResults(result.data);
+        } else {
+            loadUsers();
+        }
+
     };
 
     const resultsd = searchTerm ? searchResults : users;
@@ -69,7 +77,7 @@ export default function Inventario() {
         <div className="containermi">
             <form onSubmit={handleSearch}>
                 <div className="input-group mb-3" >
-                    <input type="text" className="estilo-buscar" FontAwesomeIcon icon={faSearch}  placeholder="Buscar" aria-label="Buscar" aria-describedby="buscar-boton"
+                    <input type="text" className="estilo-buscar" FontAwesomeIcon icon={faSearch} placeholder="Buscar" aria-label="Buscar" aria-describedby="buscar-boton"
                         onChange={handleChange} />
                     <button className="btn btn-primary" type="submit" id="buscar-boton">
                         <FontAwesomeIcon icon={faSearch} />
@@ -80,6 +88,7 @@ export default function Inventario() {
                             Filtrar
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
                             <li><a class="dropdown-item" href="#">BEBIDAS</a></li>
                             <li><a class="dropdown-item" href="#">CERVEZA</a></li>
                             <li><a class="dropdown-item" href="#">LICORES</a></li>
