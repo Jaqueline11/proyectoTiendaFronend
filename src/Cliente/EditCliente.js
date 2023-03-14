@@ -209,9 +209,13 @@ export default function EditCliente() {
                                 Edad:
                                 <input
                                     placeholder="Edad"
-                                    type="number" maxlength="2"
+                                    type="number" 
                                     value={user.edad}
                                     onChange={(e) => setUser({ ...user, edad: e.target.value })}
+                                    maxLength={2}
+                                    onInput={(e) => {
+                                        e.target.value = e.target.value.slice(0, 2)
+                                    }} 
                                     style={{ marginLeft: "12px", marginTop: "10px" }} />
                                 <br /><br />
                                 <button style={{ marginLeft: "190px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
