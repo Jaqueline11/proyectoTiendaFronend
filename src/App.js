@@ -12,8 +12,9 @@ import Inventario from './Inventario/Inventario';
 import Proveedores from './Proveedores/Proveedores';
 import ListaProveedor from './Proveedores/ListaProveedor';
 import EditProveedor from './Proveedores/EditProveedor';
-
-
+import EditCliente from './Cliente/EditCliente';
+import Clientes from './Cliente/Clientes';
+import ListaCliente from './Cliente/ListaCliente';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         <Route exact path="/vProveedores" element={<div><NavBar /><Proveedores /></div>} />
         <Route exact path="/vListaProveedor" element={<div><NavBar /><ListaProveedor /></div>} />
         <Route exact path="/editProveedor/:id_proveedor" element={<div><NavBar /><EditProveedor /></div>} />
+        <Route exact path="/vCliente" element={<div><NavBar /><Clientes/></div>} />
+        <Route exact path="/vListaCliente" element={<div><NavBar /><ListaCliente /></div>} />
+        <Route exact path="/editCliente/:id_cliente" element={<div><NavBar /><EditCliente /></div>} />
       </Routes>
       
     </Router>

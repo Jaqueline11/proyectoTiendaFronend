@@ -29,7 +29,7 @@ export default function NavBar() {
      
       <li><a class="dropdown-item" href="/vInventario">INVENTARIO</a></li>
       <li><a class="dropdown-item" href="/vlcliente">EMPLEADOS</a></li>
-        <li><a class="dropdown-item" href="#">CLIENTES</a></li>
+        <li><a class="dropdown-item" href="/vListaCliente">CLIENTES</a></li>
         <li><a class="dropdown-item" href="/vlistaproveedor">PROVEEDORES</a></li>
       </ul>
     </div>
