@@ -3,21 +3,23 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import './Estilo.css';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function PedidoCliente() {
-    
-    
-    
+
+
+
+    const [inventariolista, setInventariolista] = useState([]);
     const navigate = useNavigate();
     const [cedula, setCedula] = useState(null);
     const [nombre, setNombre] = useState('');
     const [direccion, setdireccion] = useState('');
     const [boton, setBoton] = useState('CONSUMIDOR FINAL');
-    const [codigo, setCodigo] = useState(null);
-    const [codigos, setCodigos] = useState(null);
-    const [nombrepro, setNombrepro] = useState('');
+    const [codigo, setCodigo] = useState(undefined);
+    const [nombrepro, setNombrepro] = useState(null);
     const [lista, setLista] = useState([]);
-    const [maximo, setMaximo] = useState(null);
+    const [maximo, setMaximo] = useState(0);
     const [punitario, setPunitario] = useState(null);
     const [cantidad, setCantidad] = useState(null);
     const [pTotal, setPtotal] = useState(0);
@@ -34,34 +36,90 @@ export default function PedidoCliente() {
 
     axios.interceptors.request.use(
         config => {
-          const token = localStorage.getItem('token');
-          if(token==""){
-            setError("Token No encontrado");
-            
-            setTimeout(() => {
-                navigate('/')
-            }, 2000);
+            const token = localStorage.getItem('token');
+            if (token == "") {
+                setError("Token No encontrado");
 
-          }  
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000);
 
-          if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
-          }
-          return config;
+            }
+
+            if (token) {
+                config.headers['Authorization'] = `Bearer ${token}`;
+            }
+            return config;
         },
         error => Promise.reject(error)
 
-      );
+    );
+
+    useEffect(() => {
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+
+
+
+    const handleBeforeUnload = (e) => {
+        e.preventDefault();
+        e.returnValue = '';
+    };
+
+    useEffect(() => {
+        loadInventario();
+
+    }, [])
+
+    const loadInventario = async () => {
+        const result = await axios.get("http://localhost:8080/api/inventario/listarinventario");
+
+        setInventariolista(result.data);
+
+    };
+
+    function eliminarproductos(index, listas) {
+        const indiceAEliminar = index;
+        const nuevaLista = [...lista];
+        console.log(index, cantidad, "hola")
+        nuevaLista.splice(indiceAEliminar, 1);
+        setLista(nuevaLista);
+
+        const preciot = pTotal - listas.PrecioTotal
+        const ivat = preciot * 0.12;
+        const subtotalt = preciot - ivat;
+
+
+        setPtotal(preciot.toFixed(2));
+        setIva(ivat.toFixed(2));
+        setSubtotal(subtotalt.toFixed(2));
+        const cantidads = listas.Cantidad * (-1);
+        console.log(cantidads);
+
+        axios.put(`http://localhost:8080/api/inventario/editarcantidad?id=${listas.Codigo}&cantidad=${cantidads}`)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+
+    }
 
 
     const AgregarProducto = () => {
 
-        if (cantidad != null && cantidad != 0 && codigos != null && nombrepro != null) {
-            const existeProducto = lista.find(producto => producto.Codigo === codigos);
+        if (cantidad != null && cantidad != 0 && codigo != null && nombrepro != null) {
+            const existeProducto = lista.find(producto => producto.Codigo === codigo);
 
             if (existeProducto) {
                 console.log("El producto ya existe en la lista");
-                const index = lista.findIndex(producto => producto.Codigo === codigos);
+                const index = lista.findIndex(producto => producto.Codigo === codigo);
                 if (index !== -1) {
                     const nuevaCantidad = cantidad;
                     const nuevoPrecioTotal = cantidad * punitario;
@@ -79,6 +137,10 @@ export default function PedidoCliente() {
                     setPtotal(preciot.toFixed(2));
                     setIva(ivat.toFixed(2));
                     setSubtotal(subtotalt.toFixed(2));
+
+                    setNombrepro('')
+                    setMaximo(0)
+                    setCantidad(0)
                 }
                 return;
             }
@@ -94,17 +156,22 @@ export default function PedidoCliente() {
             setPtotal(preciot.toFixed(2));
             setIva(ivat.toFixed(2));
             setSubtotal(subtotalt.toFixed(2));
-            const nuevoProducto = { Codigo: codigos, Producto: nombrepro, Cantidad: cantidad, PrecioUnitario: punitario, PrecioTotal: preciototal };
+            const nuevoProducto = { Codigo: codigo, Producto: nombrepro, Cantidad: cantidad, PrecioUnitario: punitario, PrecioTotal: preciototal };
             const nuevaLista = [...lista, nuevoProducto];
             setLista(nuevaLista);
 
-            axios.put(`http://localhost:8080/api/inventario/editarcantidad?id=${codigos}&cantidad=${cantidad}`)
+            axios.put(`http://localhost:8080/api/inventario/editarcantidad?id=${codigo}&cantidad=${cantidad}`)
                 .then(response => {
                     console.log(response.data);
                 })
                 .catch(error => {
                     console.log(error);
                 });
+
+            setNombrepro('')
+            setMaximo(0)
+            setCantidad(0)
+            loadInventario();
         } else {
             setError("CAMPOS INCOMPLETOS");
 
@@ -139,11 +206,12 @@ export default function PedidoCliente() {
             await axios.get(`http://localhost:8080/api/inventario/producto/${event.target.value}`, {
 
             }).then(response => {
-                if (response.data.descripcion != null) {
-                    setNombrepro(response.data.descripcion)
+                if (response.data.nombre != null) {
+                    setNombrepro(response.data.nombre)
                     setMaximo(response.data.cantidad)
                     setPunitario(response.data.valor)
-                    setCodigos(event.target.value)
+                    setCodigo(response.data.codigo)
+                    console.log(response.data.codigo)
                     if (response.data.cantidad <= 0) {
                         setError("Producto no disponible")
 
@@ -154,26 +222,30 @@ export default function PedidoCliente() {
                     }
                 } else {
                     setNombrepro('')
-                    setCodigos(null);
+                    setMaximo(0)
+                    setCantidad(0)
+                    setCodigo("");
 
                 }
             })
                 .catch(error => {
                     setNombrepro('');
                     setCodigo(null);
-                    console.log("error")
+                    setMaximo(0)
+                    setCantidad(0)
+                    setCodigo("");
                 });
         } else {
             setNombrepro('')
-            setCodigos(null);
+            setMaximo(0)
+            setCantidad(0)
+            setCodigo("")
         }
 
 
     }
 
-    const onInputChange = (e) => {
-        setInventario({ ...inventario, [e.target.name]: e.target.value });
-         };
+
 
     async function handleChange(event) {
         setCedula(event.target.value)
@@ -193,21 +265,24 @@ export default function PedidoCliente() {
     }
 
     useEffect(() => {
-        console.log(inventario);
-        const fetchData = async () => {
-            const response = await axios.post("http://localhost:8080/api/pedidocliente/crearpedidocliente", inventario)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        };
-        fetchData();
 
-        return async () => {
-            // Realiza cualquier limpieza necesaria
-        };
+        if (inventario.fecha_pedido != "") {
+            const fetchData = async () => {
+                const response = await axios.post("http://localhost:8080/api/pedidocliente/crearpedidocliente", inventario)
+                    .then(response => {
+                        console.log(response);
+                        
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            };
+            fetchData();
+
+            return async () => {
+                // Realiza cualquier limpieza necesaria
+            };
+        }
     }, [inventario]);
 
     const registrar = async (e) => {
@@ -221,7 +296,7 @@ export default function PedidoCliente() {
             await axios.get(`http://localhost:8080/api/clienteced/${cedula}`, {
 
             }).then(response => {
-                
+
                 setInventario({
                     fecha_pedido: fechaActual,
                     precio_total: pTotal,
@@ -243,6 +318,12 @@ export default function PedidoCliente() {
         }
 
     }
+
+    const handleProductChange = (event) => {
+
+    };
+
+
     return (
         <div>
             {error && (
@@ -262,11 +343,36 @@ export default function PedidoCliente() {
             </div>
             <hr></hr>
             <div style={{ marginLeft: '150px', fontFamily: 'cursive' }}>
-                Buscar Producto
-                <input type="number" placeholder='Ingrese el código del producto' onChange={handleChange2} value={codigo} style={{ width: "21%", marginLeft: "10px" }}></input>
-                <input style={{ marginLeft: "10px", marginRight: "10px" }} value={nombrepro} readOnly></input>
+                <label style={{ marginLeft: '10px' }}>
+                    Buscar Producto
+                </label>
+                <input list="productos" placeholder='Ingrese el código o nombre del producto' onChange={handleChange2} style={{ width: "340px", marginLeft: "10px" }}></input>
+                <br />
+                <input readOnly value={codigo} style={{ width: "21%", marginLeft: "10px", marginTop: "10px" }}></input>
+                <input
+                    style={{ marginLeft: "10px", marginRight: "10px" }}
+                    value={nombrepro}
+
+                    readOnly></input>
+                <datalist id="productos">
+                    {inventariolista.map((product) => (
+                        <option value={product.nombre} />
+                    ))}
+                </datalist>
                 Cantidad
-                <input type="number" style={{ width: "4%", marginLeft: "10px" }} max={maximo} onChange={(e) => setCantidad(parseInt(e.target.value))}></input>
+                <input
+                    type="number"
+                    style={{ width: "7%", marginLeft: "10px" }}
+                    max={maximo}
+                    min="0"
+                    value={cantidad}
+                    onChange={(e) => setCantidad(parseInt(e.target.value))}
+                    onKeyDown={(e) => {
+                        e.preventDefault();
+
+                    }}
+                />
+
                 <button style={{ marginLeft: "10px" }} onClick={AgregarProducto}>AGREGAR PRODUCTO</button>
 
 
@@ -286,13 +392,17 @@ export default function PedidoCliente() {
                         </thead>
                         <tbody>
                             {
-                                lista.map((lista, index) => (
+                                lista.map((listas, index) => (
                                     <tr>
-                                        <td style={{ width: '5%' }}>{lista.Codigo}</td>
-                                        <td style={{ width: '25%' }}>{lista.Producto} </td>
-                                        <td style={{ width: '5%' }}>{lista.Cantidad}</td>
-                                        <td style={{ width: '5%' }}>{lista.PrecioUnitario}</td>
-                                        <td style={{ width: '5%' }}>{lista.PrecioTotal}</td>
+                                        <td style={{ width: '5%' }}>{listas.Codigo}</td>
+                                        <td style={{ width: '80%' }}>{listas.Producto} </td>
+                                        <td style={{ width: '5%' }}>{listas.Cantidad}</td>
+                                        <td style={{ width: '5%' }}>{listas.PrecioUnitario}</td>
+                                        <td style={{ width: '5%' }}>{listas.PrecioTotal}</td>
+                                        <td>
+                                            <button onClick={() => eliminarproductos(index, listas)}> <FontAwesomeIcon icon={faTrashAlt} />
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))
                             }
@@ -311,6 +421,10 @@ export default function PedidoCliente() {
             <div>
                 <button className="btn btn-outline-primary" style={{ marginLeft: "30%", width: "10%" }} onClick={registrar}>Guardar</button>
             </div>
+
+
+
+
 
         </div>
     )
