@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate,Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,8 @@ export default function IniciarSesion() {
   const [usuario, setUsername] = useState('');
   const [contrasena, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [esAdmin, setEsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [esAdmin, setEsadmin]=useState(false);
 
   const toggleMostrarContrasena = () => {
     setMostrarContrasena(!mostrarContrasena);
@@ -23,7 +24,7 @@ export default function IniciarSesion() {
       setError('Por favor ingrese su usuario y contraseña');
       setTimeout(() => {
         setError("");
-    }, 2000);
+      }, 2000);
       return;
     } else {
       const logins = {
@@ -32,52 +33,48 @@ export default function IniciarSesion() {
       };
 
       const fetchData = async () => {
+        setIsLoading(true);
         const response = await axios.post("http://localhost:8080/api/usuarios/login", logins)
-            .then(response => {
-              if(response!=null || response!=""){  
-              console.log(response.data.token);
-                localStorage.setItem('token', response.data.token);
-                
-                if(usuario=="administrador"){
-                  setEsAdmin(true);
-                  localStorage.setItem('rol','admin')
-                  navigate("/vprincipal")
-                  console.log("Es admin")
-                }else{
-                  setEsAdmin(false);
-                  localStorage.setItem('rol','user')
-                  navigate("/vprincipal")
-                  console.log("no es admin")
-                }
+          .then(response => {
+            if(response!=null || response!=""){  
+              
+              localStorage.setItem('token', response.data.token);
+
+              if(usuario==="administrador"){
+                localStorage.setItem('rol','admin')
+                setEsadmin(true)
               }else{
-                setError("Usuario o contraseña incorrecta");
-                setTimeout(() => {
-                  setError("");
-              }, 2000);
+                localStorage.setItem('rol','user')
+                setEsadmin(true)
               }
-                
-
-            })
-            .catch(error => {
-                console.log(error);
-                setError("Usuario o contraseña incorrecta");
-                setTimeout(() => {
-                  setError("");
+            }else{
+              setError("Usuario o contraseña incorrecta");
+              setTimeout(() => {
+                setError("");
               }, 2000);
-            });
-    };
-    fetchData();
-
-    return async () => {
-        // Realiza cualquier limpieza necesaria
-    };
-
-
-
-        
-
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            setError("Usuario o contraseña incorrecta");
+            setTimeout(() => {
+              setError("");
+            }, 2000);
+          });
+        setIsLoading(false);
+      };
+      fetchData();
     }
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/vprincipal");
+    }
+  }, [esAdmin]);
+
+  
   return (
     <div className='login'>
     <form onSubmit={handleSubmit}>
@@ -132,7 +129,6 @@ export default function IniciarSesion() {
               >
                 Ingresar
               </button> <br></br><br></br>
-              <Link>¿Olvidaste tu contraseña?</Link>
             </h5>
             
           </form>

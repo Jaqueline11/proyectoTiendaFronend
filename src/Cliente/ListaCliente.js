@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
 
+
 export default function ListaCliente() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
@@ -68,9 +69,9 @@ export default function ListaCliente() {
                 </div>
             )}
             <br></br>
-            {admin == 'admin' ?
+            
             <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR CLIENTE</button>
-            :null}
+            
             <br></br>
             <br></br>
 
