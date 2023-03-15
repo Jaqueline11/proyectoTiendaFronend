@@ -8,6 +8,8 @@ export default function ListaProveedor() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [users, setUsers] = useState([]);
+    //sconst [admini, setAdmini]=useState(true);
+    const admin=localStorage.getItem('rol');
 
 
     //AGREGA EL JWT AL ENCABEZADO PARA MIS CONSULTAS
@@ -31,6 +33,7 @@ export default function ListaProveedor() {
         error => Promise.reject(error)
 
     );
+    
     useEffect(() => {
         loadUsers();
 
@@ -67,7 +70,10 @@ export default function ListaProveedor() {
                 </div>
             )}
             <br></br>
-            <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR PROVEEDOR</button>
+            {admin == 'admin' ? <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR PROVEEDOR</button> : null}
+
+
+
             <br></br>
             <br></br>
 
@@ -92,17 +98,23 @@ export default function ListaProveedor() {
                                 <td>{user.persona.genero}</td>
                                 <td>{user.nombre_comercial}</td>
                                 <td>{user.celular}</td>
+                                {admin == 'admin' ?
                                 <td>
+                                
                                     <Link
                                         className="btn btn-outline-primary mx-2"
                                         to={`/editProveedor/${user.id_proveedor}`}
                                     >
                                         Editar
+                                    
                                     </Link>
+                                    
                                     <button style={{ marginLeft: '10%' }}
                                         className="btn btn-danger mx-2"
                                         onClick={() => deleteUser(user.id_proveedor)}>Eliminar</button>
+                                    
                                 </td>
+                                :null}
 
                             </tr>
                         ))

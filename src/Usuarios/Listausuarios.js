@@ -8,7 +8,7 @@ export default function Listausuarios() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [users, setUsers] = useState([]);
-
+    const admin=localStorage.getItem('rol');
 
     //AGREGA EL JWT AL ENCABEZADO PARA MIS CONSULTAS
     axios.interceptors.request.use(
@@ -68,7 +68,9 @@ export default function Listausuarios() {
                 </div>
             )}
             <br></br>
+            {admin == 'admin' ?
             <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR USUARIO</button>
+            :null}
             <br></br>
             <br></br>
 
@@ -91,6 +93,7 @@ export default function Listausuarios() {
                                 <td>{user.usuario}</td>
                                 <td>{user.persona.direccion}</td>
                                 <td>{user.persona.genero}</td>
+                                {admin == 'admin' ?
                                 <td>
                                     <Link
                                         className="btn btn-outline-primary mx-2"
@@ -102,6 +105,7 @@ export default function Listausuarios() {
                                         className="btn btn-danger mx-2"
                                         onClick={() => deleteUser(user.id_usuarios, user.usuario)}>Eliminar</button>
                                 </td>
+                                :null}
 
                             </tr>
                         ))

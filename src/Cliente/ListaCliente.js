@@ -8,6 +8,7 @@ export default function ListaCliente() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [users, setUsers] = useState([]);
+    const admin=localStorage.getItem('rol');
 
 
     //AGREGA EL JWT AL ENCABEZADO PARA MIS CONSULTAS
@@ -67,7 +68,9 @@ export default function ListaCliente() {
                 </div>
             )}
             <br></br>
+            {admin == 'admin' ?
             <button style={{ position: 'fixed', right: "140px" }} onClick={abriradd}>CREAR CLIENTE</button>
+            :null}
             <br></br>
             <br></br>
 
@@ -90,6 +93,7 @@ export default function ListaCliente() {
                                 <td>{user.persona.direccion}</td>
                                 <td>{user.persona.genero}</td>
                                 <td>{user.edad}</td>
+                                {admin == 'admin' ?
                                 <td>
                                     <Link
                                         className="btn btn-outline-primary mx-2"
@@ -101,6 +105,7 @@ export default function ListaCliente() {
                                         className="btn btn-danger mx-2"
                                         onClick={() => deleteUser(user.id_cliente)}>Eliminar</button>
                                 </td>
+                                :null}
 
                             </tr>
                         ))

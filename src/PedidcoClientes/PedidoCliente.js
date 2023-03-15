@@ -121,9 +121,8 @@ export default function PedidoCliente() {
                 console.log("El producto ya existe en la lista");
                 const index = lista.findIndex(producto => producto.Codigo === codigo);
                 if (index !== -1) {
-                    const nuevaCantidad = cantidad;
-                    const nuevoPrecioTotal = cantidad * punitario;
-
+                    const nuevaCantidad = lista[index].Cantidad + cantidad;
+                    const nuevoPrecioTotal = nuevaCantidad * punitario;
 
                     const productoModificado = { ...lista[index], Cantidad: nuevaCantidad, PrecioTotal: nuevoPrecioTotal };
                     const nuevaLista = [...lista];
@@ -141,6 +140,14 @@ export default function PedidoCliente() {
                     setNombrepro('')
                     setMaximo(0)
                     setCantidad(0)
+
+                    axios.put(`http://localhost:8080/api/inventario/editarcantidad?id=${codigo}&cantidad=${cantidad}`)
+                        .then(response => {
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }
                 return;
             }
@@ -271,7 +278,7 @@ export default function PedidoCliente() {
                 const response = await axios.post("http://localhost:8080/api/pedidocliente/crearpedidocliente", inventario)
                     .then(response => {
                         console.log(response);
-                        
+
                     })
                     .catch(error => {
                         console.log(error);
@@ -421,9 +428,6 @@ export default function PedidoCliente() {
             <div>
                 <button className="btn btn-outline-primary" style={{ marginLeft: "30%", width: "10%" }} onClick={registrar}>Guardar</button>
             </div>
-
-
-
 
 
         </div>
