@@ -15,6 +15,7 @@ import EditProveedor from './Proveedores/EditProveedor';
 import EditCliente from './Cliente/EditCliente';
 import Clientes from './Cliente/Clientes';
 import ListaCliente from './Cliente/ListaCliente';
+import PedidoProveedor from './PedidoProveedor/PedidoProveedor';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/vCliente" element={<div><NavBar /><Clientes/></div>} />
         <Route exact path="/vListaCliente" element={<div><NavBar /><ListaCliente /></div>} />
         <Route exact path="/editCliente/:id_cliente" element={<div><NavBar /><EditCliente /></div>} />
+        <Route exact path="/vpedidoproveedor" element={<div><NavBar /><PedidoProveedor /></div>} />
       </Routes>
       
     </Router>

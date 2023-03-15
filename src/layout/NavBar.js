@@ -39,7 +39,7 @@ export default function NavBar() {
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
         <li><a class="dropdown-item" href="/vpedidocliente">PEDIDOS CLIENTES</a></li>
-        <li><a class="dropdown-item" href="#">PEDIDOS PROVEEDORES</a></li>
+        <li><a class="dropdown-item" href="/vpedidoproveedor">PEDIDOS PROVEEDORES</a></li>
       </ul>
     </div>
     <div class="dropdown">
