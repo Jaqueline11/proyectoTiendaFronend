@@ -165,10 +165,10 @@ export default function EditCliente() {
                                 Cedula:
                                 <input
                                     placeholder="Ingrese su cedula"
+                                    type="number"
                                     value={user.persona.cedula}
                                     onChange={handleCedulaChange}
                                     style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
-                                    type="text"
                                     readOnly
                                     maxLength={10}
                                     onInput={(e) => {

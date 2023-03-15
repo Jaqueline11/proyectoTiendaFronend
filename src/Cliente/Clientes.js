@@ -56,8 +56,6 @@ export default function Clientes() {
                 const result = await axios.post("http://localhost:8080/api/crearcliente", user);
                 if (result.data != "") {
                     console.log(result.data);
-
-
                     navigate('/vListaCliente')
                 } else {
                     setError("Cedula Duplicada")
@@ -101,17 +99,20 @@ export default function Clientes() {
 
     const handlenombreChange = (event) => {
         const nuevaCedula = event.target.value;
-        setUser((prevState) => ({
-            ...prevState,
-            persona: {
-                ...prevState.persona,
-                nombre: nuevaCedula,
-            },
-        }));
+        if (/^[a-zA-Z\s]+$/.test(event.target.value) ||event.target.value === '') {
+            setUser((prevState) => ({
+                ...prevState,
+                persona: {
+                    ...prevState.persona,
+                    nombre: nuevaCedula,
+                },
+            }));
+          }
     };
 
     const handleapellidoChange = (event) => {
         const nuevaCedula = event.target.value;
+        if (/^[a-zA-Z\s]+$/.test(event.target.value) ||event.target.value === '') {
         setUser((prevState) => ({
             ...prevState,
             persona: {
@@ -119,6 +120,7 @@ export default function Clientes() {
                 apellido: nuevaCedula,
             },
         }));
+    }
     };
 
     const handledireccionChange = (event) => {
@@ -165,7 +167,7 @@ export default function Clientes() {
                                 value={user.persona.cedula}
                                 onChange={handleCedulaChange}
                                 style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
-                                type="text"
+                                type="number"
                                 maxLength={10}
                                 onInput={(e) => {
                                     e.target.value = e.target.value.slice(0, 10)
@@ -173,6 +175,7 @@ export default function Clientes() {
                             Dirección:
                             <input
                                 placeholder="Ingrese la direccion"
+                                type="text"
                                 value={user.persona.direccion}
                                 onChange={handledireccionChange}
                                 style={{ marginLeft: "10px", marginTop: "3px", width: "160px" }} />
@@ -181,11 +184,13 @@ export default function Clientes() {
                             <input
                                 style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
                                 placeholder="Ingrese el nombre"
+                                type="text" 
                                 value={user.persona.nombre}
                                 onChange={handlenombreChange} />
                             Apellido:
                             <input
                                 placeholder="Ingrese el apellido"
+                                type="text" 
                                 value={user.persona.apellido}
                                 onChange={handleapellidoChange}
                                 style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />

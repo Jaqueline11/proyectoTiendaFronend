@@ -220,8 +220,12 @@ export default function EditProveedor() {
                                 <input
                                     placeholder="Número de celular"
                                     maxLength={10}
+                                    type="number"
                                     value={user.celular}
                                     onChange={(e) => setUser({ ...user, celular: e.target.value })}
+                                    onInput={(e) => {
+                                        e.target.value = e.target.value.slice(0, 2)
+                                    }}
                                     style={{ marginLeft: "12px", marginTop: "10px" }} />
                                 <br />
 

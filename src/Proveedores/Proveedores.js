@@ -93,6 +93,7 @@ export default function Proveedores() {
 
         const handlenombreChange = (event) => {
             const nuevaCedula = event.target.value;
+            if (/^[a-zA-Z\s]+$/.test(event.target.value) ||event.target.value === '') {
             setUser((prevState) => ({
                 ...prevState,
                 persona: {
@@ -100,10 +101,12 @@ export default function Proveedores() {
                     nombre: nuevaCedula,
                 },
             }));
+        }
         };
 
         const handleapellidoChange = (event) => {
             const nuevaCedula = event.target.value;
+            if (/^[a-zA-Z\s]+$/.test(event.target.value) ||event.target.value === '') {
             setUser((prevState) => ({
                 ...prevState,
                 persona: {
@@ -111,6 +114,7 @@ export default function Proveedores() {
                     apellido: nuevaCedula,
                 },
             }));
+        }
         };
 
         const handledireccionChange = (event) => {
@@ -158,7 +162,7 @@ export default function Proveedores() {
                                     value={user.persona.cedula}
                                     onChange={handleCedulaChange}
                                     style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
-                                    type="text"
+                                    type="number"
                                     maxLength={10}
                                     onInput={(e) => {
                                         e.target.value = e.target.value.slice(0, 10)
@@ -174,11 +178,13 @@ export default function Proveedores() {
                                 <input
                                     style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
                                     placeholder="Ingrese el nombre"
+                                    type="text" 
                                     value={user.persona.nombre}
                                     onChange={handlenombreChange} />
                                 Apellido:
                                 <input
                                     placeholder="Ingrese el apellido"
+                                    type="text" 
                                     value={user.persona.apellido}
                                     onChange={handleapellidoChange}
                                     style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
@@ -204,9 +210,13 @@ export default function Proveedores() {
                                 <label style={{ marginLeft: "200px", marginTop: "10px" }}>Celular:</label>
                                 <input
                                     placeholder="Número de celular"
+                                    type="number"
                                     maxLength={10}
                                     value={user.celular}
                                     onChange={(e) => setUser({ ...user, celular: e.target.value })}
+                                    onInput={(e) => {
+                                        e.target.value = e.target.value.slice(0, 10)
+                                    }}
                                     style={{ marginLeft: "12px", marginTop: "10px" }} />
                                 <br />
 
