@@ -16,8 +16,6 @@ import EditCliente from './Cliente/EditCliente';
 import Clientes from './Cliente/Clientes';
 import ListaCliente from './Cliente/ListaCliente';
 import PedidoProveedor from './PedidoProveedor/PedidoProveedor';
-import Reportepedidocliente from './Reportes/Reportepedidocliente';
-import {  PDFViewer } from "@react-pdf/renderer";
 import Reportepedidos from './Reportes/Reportepedidos';
 import Reportepedcliente from './Reportes/Reportepedcliente';
 

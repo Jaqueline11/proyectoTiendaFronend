@@ -8,7 +8,7 @@ import {useReactToPrint} from 'react-to-print';
 
 
 
-export default function Reportepedidocliente() {
+export default function ReportePEDpdf() {
 
     const navigate = useNavigate();
     const [error, setError] = useState(null);
