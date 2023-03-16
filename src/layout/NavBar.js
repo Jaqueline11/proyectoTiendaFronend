@@ -17,7 +17,7 @@ export default function NavBar() {
 
   return (
     <div>
-       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">TIENDA</a>
 
@@ -59,6 +59,8 @@ export default function NavBar() {
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
               <li><a class="dropdown-item" href="/"><FontAwesomeIcon icon={faChartBar} /> REPORTE PEDIDOS</a></li>
+              <li><a class="dropdown-item" href="reportesp">REPORTE PEDIDOS</a></li>
+              <li><a class="dropdown-item" href="reportes">REPORTE CLIENTE</a></li>
 
             </ul>
           </div>
@@ -78,7 +80,7 @@ export default function NavBar() {
           </div>
 
         </div>
-      
+
       </nav >
 
     </div >

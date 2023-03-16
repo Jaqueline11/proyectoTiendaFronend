@@ -75,6 +75,15 @@ body {
   margin-left: 60px;
   margin-right: 60px;
 }
+.containermo {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  margin-left: 60px;
+  margin-right: 60px;
+}
 
 input {
   margin-bottom: 1px; /* Agrega un margen inferior para separar el campo de entrada de texto de la tabla */
@@ -127,7 +136,10 @@ i.fas.fa-filter {
     background-color: aqua;
   }
 }
-
+.imprimir{
+  margin-top: 50px;
+  margin-left: 1400px;
+}
 
 
 

@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useRef} from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect } from 'react'
+import {useReactToPrint} from 'react-to-print';
 
 export default function Reportepedidos() {
     const [error, setError] = useState(null);
@@ -48,7 +49,14 @@ export default function Reportepedidos() {
         setUsers(result.data);
 
     };
-
+    /** */
+    const componenteRef=useRef();
+    const gandeprint=useReactToPrint({
+        content:()=>componenteRef.current,
+        documentTitle:'emp-data',
+        onAfterPrint:()=>alert('Print success'),
+       
+    });
 
 
     const resultsd = searchTerm ? searchResults :
@@ -57,8 +65,11 @@ export default function Reportepedidos() {
 
 
     return (
-        <div className="containermi">
+        <div>
+              <button   class="btn btn-secondary  imprimir" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" onClick={gandeprint}>Imprimir</button>
+        <div className="containermo" ref={componenteRef}>
           <h2>Lista de pedidos</h2>
+          
           <br></br>
                 <table className="tabla-estilo">
                     <thead>
@@ -85,7 +96,9 @@ export default function Reportepedidos() {
                     </tbody>
                 </table>
             
-
+                
         </div>
+        </div>
+        
     );
 }
