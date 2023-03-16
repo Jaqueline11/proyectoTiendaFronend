@@ -111,6 +111,23 @@ i.fas.fa-filter {
 .estilo-filtrar{
   margin-left: 20px;
 }
+.tabla-ventas {
+  margin-left: 50px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.tabla-ventas th, .tabla-ventas td {
+  width: 20%;
+  text-align: center;
+}
+
+@media print {
+  .print-only {
+    background-color: aqua;
+  }
+}
+
 
 
 

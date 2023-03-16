@@ -16,6 +16,10 @@ import EditCliente from './Cliente/EditCliente';
 import Clientes from './Cliente/Clientes';
 import ListaCliente from './Cliente/ListaCliente';
 import PedidoProveedor from './PedidoProveedor/PedidoProveedor';
+import Reportepedidocliente from './Reportes/Reportepedidocliente';
+import {  PDFViewer } from "@react-pdf/renderer";
+import Reportepedidos from './Reportes/Reportepedidos';
+import Reportepedcliente from './Reportes/Reportepedcliente';
 
 function App() {
   return (
@@ -38,6 +42,8 @@ function App() {
         <Route exact path="/vListaCliente" element={<div><NavBar /><ListaCliente /></div>} />
         <Route exact path="/editCliente/:id_cliente" element={<div><NavBar /><EditCliente /></div>} />
         <Route exact path="/vpedidoproveedor" element={<div><NavBar /><PedidoProveedor /></div>} />
+        <Route exact path="/reportes" element={<div><NavBar /><Reportepedcliente /> </div>}/>
+        <Route exact path="/reportesp" element={<div><NavBar /><Reportepedidos /> </div>}/>
       </Routes>
       
     </Router>
