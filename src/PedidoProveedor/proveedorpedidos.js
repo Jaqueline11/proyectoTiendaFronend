@@ -130,8 +130,11 @@ export default function PedidoProveedor() {
             const preciot = parseFloat(pTotal) + parseFloat(preciototal);
             const ivat = preciot * 0.12;
             const subtotalt = preciot - ivat;
-
-
+            
+            setCodigo(codigo.toFixed(2));
+            setUnitario(unitario.toFixed(2));
+            setCantidad(cantidad);
+            setdescripcion(descripcion);
             setPtotal(preciot.toFixed(2));
             setIva(ivat.toFixed(2));
             setSubtotal(subtotalt.toFixed(2));
