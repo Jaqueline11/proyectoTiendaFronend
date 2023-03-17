@@ -80,7 +80,7 @@ export default function ListaCliente() {
                     <tr>
                         <th scope="col">Cedula</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">Dirección</th>
                         <th scope="col">Genero</th>
                         <th scope="col">Edad</th>
                     </tr>

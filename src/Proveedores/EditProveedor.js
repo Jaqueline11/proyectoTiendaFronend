@@ -160,7 +160,7 @@ export default function EditProveedor() {
                 )}
                 <div className="row">
                     <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                        <h2 className="text-center m-4"> Registro de Proveedor</h2>
+                        <h2 className="text-center m-4"> Modificar Proveedor</h2>
                         <form onSubmit={(e) => Registrar(e)}>
                             <div>
                                 <br></br>

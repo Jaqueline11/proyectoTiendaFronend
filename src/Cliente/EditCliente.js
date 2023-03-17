@@ -158,7 +158,7 @@ export default function EditCliente() {
                 )}
                 <div className="row">
                     <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                        <h2 className="text-center m-4"> Registro de Cliente</h2>
+                        <h2 className="text-center m-4"> Modificar Cliente</h2>
                         <form onSubmit={(e) => Registrar(e)}>
                             <div>
                                 <br></br>

@@ -82,7 +82,7 @@ export default function ListaProveedor() {
                     <tr>
                         <th scope="col">Cedula</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">Dirección</th>
                         <th scope="col">Genero</th>
                         <th scope="col">Nombre Comercial</th>
                         <th scope="col">Celular</th>
