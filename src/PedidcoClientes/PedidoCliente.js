@@ -278,6 +278,7 @@ export default function PedidoCliente() {
                 const response = await axios.post("http://localhost:8080/api/pedidocliente/crearpedidocliente", inventario)
                     .then(response => {
                         console.log(response);
+                        navigate("/reportes")
 
                     })
                     .catch(error => {
@@ -326,10 +327,7 @@ export default function PedidoCliente() {
 
     }
 
-    const handleProductChange = (event) => {
-
-    };
-
+    
 
     return (
         <div>

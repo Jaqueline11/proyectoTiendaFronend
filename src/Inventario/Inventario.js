@@ -17,15 +17,7 @@ export default function Inventario() {
 
 
     // función para manejar la búsqueda
-    const handleSearch = async (event) => {
-        try {
-            const response = await axios.get(`http://localhost:8080/api/inventario/tipo/Bebidas?nombre=${searchTerm}`);
-            setSearchResults(response.data);
-            console.log(searchTerm)
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    
 
     axios.interceptors.request.use(
         config => {
@@ -57,6 +49,7 @@ export default function Inventario() {
         const result = await axios.get("http://localhost:8080/api/inventario/listarinventario");
 
         setUsers(result.data);
+        setSearchResults(result.data)
 
     };
     const handleChange = async (event) => {
@@ -74,31 +67,24 @@ export default function Inventario() {
     const handleFilterClick = async (event) => {
         const type = event.target.innerText;
         setSelectedType(type);
-        if (type == "TODOS") {
-            loadUsers();
-        } else {
+        
             console.log(type + "tipoooooooooooo")
             const response = await axios.get(`http://localhost:8080/api/inventario/tipo/${type}`);
             setSearchResults(response.data);
-            console.log(response + "datoooooooooo")
-        }
+        
     };
 
 
-    const resultsd = searchTerm ? searchResults :
-        selectedType ? users.filter((user) => user.tipo === selectedType) :
-            users;
+    
 
 
     return (
         <div className="containermi">
-            <form onSubmit={handleSearch}>
+            <form >
                 <div className="input-group mb-3" >
                     <input type="text" className="estilo-buscar" FontAwesomeIcon icon={faSearch} placeholder="Buscar" aria-label="Buscar" aria-describedby="buscar-boton"
                         onChange={handleChange} />
-                    <button className="btn btn-primary" type="submit" id="buscar-boton">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
+                    
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle estilo-filtrar" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <FontAwesomeIcon icon={faFilter} />{' '}
@@ -109,7 +95,7 @@ export default function Inventario() {
                             <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Tipo del producto 1</a></li>
                             <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>LICORES</a></li>
                             <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>ABARROTES</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={loadUsers}>TODOS</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>TODOS</a></li>
                         </ul>
 
                     </div>
@@ -117,7 +103,7 @@ export default function Inventario() {
             </form>
 
 
-            {resultsd.length === 0 ? (
+            {searchResults.length === 0 ? (
                 <div className="no-results">
                     <img src="NoEncontrado.png" />
                     <p>No se encontraron resultadosss</p>
@@ -137,7 +123,7 @@ export default function Inventario() {
                     </thead>
 
                     <tbody className="fila">{
-                        resultsd.map((inventario, index) => (
+                        searchResults.map((inventario, index) => (
                             <tr key={index}>
                                 <td>{inventario.codigo}</td>
                                 <td>{inventario.nombre} </td>
