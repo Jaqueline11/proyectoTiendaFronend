@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBox, faUsers, faUser, faTruck, faShoppingCart, faShippingFast, faChartBar, faColumns, faFileAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import './Estilo.css';
+import axios from 'axios';
 
 export default function NavBar() {
   const navigate = useNavigate();
   const admin = localStorage.getItem('rol');
+  const usuario=localStorage.getItem('user');
+  const [iniciales, setIniciales]=useState("MC")
+  const [nombre, setNombre]=useState("");
+  
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/api/usuarios/getusuario/${usuario}`);
+    console.log(result.data)
+    const n=result.data.persona.nombre+' '+ result.data.persona.apellido;
+    setNombre(n);
+    const nombres = result.data.persona.nombre;
+    const apellidos = result.data.persona.apellido;
+    const iniciales = nombres.charAt(0) + apellidos.charAt(0);
+    setIniciales(iniciales);
+};
+loadUser();
+
   function cerrarsesion() {
     localStorage.setItem('token', '');
     navigate('/');
@@ -70,9 +88,14 @@ export default function NavBar() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-              <button onClick={cerrarsesion} style={{ backgroundImage: "linear-gradient(to right, #FF416C, #FF4B2B)", color: "white", padding: "10px", borderRadius: "5px" }}>
-                <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
-              </button>
+              <div className="menu-containers">
+                <div className="user-initialss">{iniciales}</div>
+                <div className="dropdown-menus">
+                  <button onClick={cerrarsesion} style={{width:"100px"}} >
+                    <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
+                  </button>
+                </div>
+              </div>
 
 
 
@@ -82,6 +105,7 @@ export default function NavBar() {
         </div>
 
       </nav >
+      {nombre}
 
     </div >
   );

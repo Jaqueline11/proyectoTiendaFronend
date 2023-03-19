@@ -47,6 +47,7 @@ export default function IniciarSesion() {
                 localStorage.setItem('rol','user')
                 setEsadmin(true)
               }
+              localStorage.setItem('user',usuario)
             }else{
               setError("Usuario o contraseña incorrecta");
               setTimeout(() => {
