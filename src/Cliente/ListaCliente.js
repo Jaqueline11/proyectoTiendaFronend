@@ -77,12 +77,13 @@ export default function ListaCliente() {
 
             <table className="table border shadow" style={{ width: '80%', marginLeft: '10%' }}>
                 <thead>
-                    <tr>
-                        <th scope="col">Cedula</th>
+                    <tr className="columnas">
+                        <th scope="col">Cédula</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Dirección</th>
-                        <th scope="col">Genero</th>
+                        <th scope="col">Género</th>
                         <th scope="col">Edad</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

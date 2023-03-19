@@ -162,13 +162,13 @@ export default function EditCliente() {
                         <form onSubmit={(e) => Registrar(e)}>
                             <div>
                                 <br></br>
-                                Cedula:
+                                Cédula:
                                 <input
                                     placeholder="Ingrese su cedula"
                                     type="number"
                                     value={user.persona.cedula}
                                     onChange={handleCedulaChange}
-                                    style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
+                                    style={{ marginLeft: "20px", marginRight: "20px", width: "180px" }}
                                     readOnly
                                     maxLength={10}
                                     onInput={(e) => {
@@ -179,11 +179,11 @@ export default function EditCliente() {
                                     placeholder="Ingrese la direccion"
                                     value={user.persona.direccion}
                                     onChange={handledireccionChange}
-                                    style={{ marginLeft: "10px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "10px", marginTop: "3px", width: "180px" }} />
                                 <br />
                                 Nombre:
                                 <input
-                                    style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
+                                    style={{ marginLeft: "10px", marginRight: "20px", marginTop: "3px", width: "180px" }}
                                     placeholder="Ingrese el nombre"
                                     value={user.persona.nombre}
                                     readOnly
@@ -194,13 +194,13 @@ export default function EditCliente() {
                                     value={user.persona.apellido}
                                     readOnly
                                     onChange={handleapellidoChange}
-                                    style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "18px", marginTop: "20px", width: "180px",marginRight: "20px" }} />
                                 <br />
-                                Genero:
+                                Género:
                                 <select
                                     value={user.persona.genero}
                                     onChange={handlegeneroChange}
-                                    style={{ marginLeft: "17px",marginRight: "5px", marginTop: "3px", width: "160px" }} >
+                                    style={{ marginLeft: "17px",marginRight: "20px", marginTop: "20px", width: "180px" }} >
                                     <option value="">Seleccione</option>
                                     <option value="MASCULINO">Masculino</option>
                                     <option value="FEMENINO">Femenino</option>
@@ -216,10 +216,10 @@ export default function EditCliente() {
                                     onInput={(e) => {
                                         e.target.value = e.target.value.slice(0, 2)
                                     }} 
-                                    style={{ marginLeft: "12px", marginTop: "10px" }} />
+                                    style={{ marginLeft: "33px", marginTop: "10px" }} />
                                 <br /><br />
                                 <button style={{ marginLeft: "190px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
-                                <button style={{ marginLeft: "10px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
+                                <button style={{ marginLeft: "10px" }} className="btn btn-danger mx-2" onClick={cancelar}>CANCELAR</button>
 
 
 

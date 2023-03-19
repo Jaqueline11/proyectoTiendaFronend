@@ -60,7 +60,7 @@ export default function Reportepedcliente() {
         <div className="containermi">
           <h2>Lista de pedidos clientes</h2>
           <br></br>
-                <table className="tabla-estilo">
+                <table className="tabla-estilo table border shadow">
                     <thead>
                         <tr className="columnas">
                             <th>Codigo</th>

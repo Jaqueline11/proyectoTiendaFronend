@@ -95,12 +95,15 @@ input {
   
 }
 .columnas{
-  background-color: #ab9ec7;
+  background-color: #a7c4da;
   border: 1px solid #ddd;
   
 }
+.bg-custom {
+  background-color: #5786aa;
+}
+
 .filas{
- 
   border-bottom: 1px solid #746e6e;
 }
 i.fas.fa-filter {
@@ -131,15 +134,19 @@ i.fas.fa-filter {
   text-align: center;
 }
 
-@media print {
-  .print-only {
-    background-color: aqua;
-  }
-}
+
 .imprimir{
   margin-top: 50px;
-  margin-left: 1400px;
+  margin-left: 1300px;
+  border-color: #61dafb;
 }
+
+@media print {
+  .imprimir-solo {
+    display: block;
+  }
+}
+
 
 
 

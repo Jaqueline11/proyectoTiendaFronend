@@ -156,12 +156,12 @@ export default function Proveedores() {
                         <form onSubmit={(e) => Registrar(e)}>
                             <div>
                                 <br></br>
-                                Cedula:
+                                Cédula:
                                 <input
-                                    placeholder="Ingrese su cedula"
+                                    placeholder="Ingrese su cédula"
                                     value={user.persona.cedula}
                                     onChange={handleCedulaChange}
-                                    style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
+                                    style={{ marginLeft: "20px", marginRight: "20px", width: "180px" }}
                                     type="number"
                                     maxLength={10}
                                     onInput={(e) => {
@@ -169,14 +169,14 @@ export default function Proveedores() {
                                     }} />
                                 Dirección:
                                 <input
-                                    placeholder="Ingrese la direccion"
+                                    placeholder="Ingrese la dirección"
                                     value={user.persona.direccion}
                                     onChange={handledireccionChange}
-                                    style={{ marginLeft: "10px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "10px", marginTop: "3px", width: "180px" }} />
                                 <br />
                                 Nombre:
                                 <input
-                                    style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
+                                    style={{ marginLeft: "10px", marginRight: "20px", marginTop: "20px", width: "180px" }}
                                     placeholder="Ingrese el nombre"
                                     type="text" 
                                     value={user.persona.nombre}
@@ -187,13 +187,13 @@ export default function Proveedores() {
                                     type="text" 
                                     value={user.persona.apellido}
                                     onChange={handleapellidoChange}
-                                    style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "18px", marginTop: "3px", width: "180px" }} />
                                 <br />
-                                Genero:
+                                Género:
                                 <select
                                     value={user.persona.genero}
                                     onChange={handlegeneroChange}
-                                    style={{ marginLeft: "17px", marginTop: "3px", width: "160px" }} >
+                                    style={{ marginLeft: "17px", marginTop: "20px", width: "180px" }} >
                                     <option value="">Seleccione</option>
                                     <option value="MASCULINO">Masculino</option>
                                     <option value="FEMENINO">Femenino</option>
@@ -207,7 +207,7 @@ export default function Proveedores() {
                                     onChange={(e) => setUser({ ...user, nombre_comercial: e.target.value })}
                                     style={{ marginLeft: "5px", marginTop: "10px" }} />
                                 <br />
-                                <label style={{ marginLeft: "200px", marginTop: "10px" }}>Celular:</label>
+                                <label style={{ marginLeft: "200px", marginTop: "20px" }}>Celular:</label>
                                 <input
                                     placeholder="Número de celular"
                                     type="number"
@@ -221,8 +221,8 @@ export default function Proveedores() {
                                 <br />
 
                                 <br /><br />
-                                <button style={{ marginLeft: "100px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
-                                <button style={{ marginLeft: "20px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
+                                <button style={{ marginLeft: "200px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
+                                <button style={{ marginLeft: "20px" }} className="btn btn-danger mx-2" onClick={cancelar}>CANCELAR</button>
 
 
 

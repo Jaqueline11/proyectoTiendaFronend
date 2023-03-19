@@ -77,18 +77,19 @@ export default function ListaProveedor() {
             <br></br>
             <br></br>
 
-            <table className="table border shadow" style={{ width: '80%', marginLeft: '10%' }}>
+            <table className="table border shadow tabla-estilo " style={{ width: '80%', marginLeft: '10%' }}>
                 <thead>
-                    <tr>
-                        <th scope="col">Cedula</th>
+                    <tr className="columnas">
+                        <th scope="col">Cédula</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Dirección</th>
-                        <th scope="col">Genero</th>
+                        <th scope="col">Género</th>
                         <th scope="col">Nombre Comercial</th>
                         <th scope="col">Celular</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="fila">
                     {
                         users.map((user, index) => (
                             <tr key={index}>

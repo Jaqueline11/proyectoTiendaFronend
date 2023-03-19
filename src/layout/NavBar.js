@@ -11,7 +11,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const admin = localStorage.getItem('rol');
   const usuario=localStorage.getItem('user');
-  const [iniciales, setIniciales]=useState("MC")
+  const [iniciales, setIniciales]=useState("")
   const [nombre, setNombre]=useState("");
   
   const loadUser = async () => {
@@ -35,7 +35,7 @@ loadUser();
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">TIENDA</a>
 
@@ -76,9 +76,8 @@ loadUser();
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-              <li><a class="dropdown-item" href="/"><FontAwesomeIcon icon={faChartBar} /> REPORTE PEDIDOS</a></li>
-              <li><a class="dropdown-item" href="reportesp">REPORTE PEDIDOS</a></li>
-              <li><a class="dropdown-item" href="reportes">REPORTE CLIENTE</a></li>
+              <li><a class="dropdown-item" href="reportesp"><FontAwesomeIcon icon={faChartBar}/> REPORTE PEDIDOS</a></li>
+              <li><a class="dropdown-item" href="reportes"><FontAwesomeIcon icon={faChartBar} />REPORTE CLIENTE</a></li>
 
             </ul>
           </div>

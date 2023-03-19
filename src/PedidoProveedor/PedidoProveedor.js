@@ -299,7 +299,7 @@ export default function PedidoProveedor() {
                 </div>
             )}
 
-            <div style={{ marginLeft: '375px' }}>
+            <div style={{ marginLeft: '175px' }}>
                 <br />
                 <label>Ruc:</label>
 
@@ -307,11 +307,11 @@ export default function PedidoProveedor() {
 
                 <label >Proveedor:</label>
                 <input placeholder='Aqui aparecera el nombre del proveedor' style={{ width: '30%', marginLeft: '18px' }} value={nombreproveedor} readonly></input><br />
-                <label style={{ marginLeft: '350px', marginTop: '10px' }}>Nombre Comercial:</label>
+                <label style={{ marginLeft: '490px', marginTop: '10px' }}>Nombre Comercial:</label>
                 <input placeholder='Aqui aparecera el nombre del comercial' style={{ width: '30%', marginLeft: '18px' }} value={nombrecomercial} readonly></input>
 
             </div>
-            <hr></hr>
+            <hr style={{ marginLeft: '152px', marginRight: '140px' }}></hr>
 
             {validar ? (
                 <div className="display-flex">
@@ -369,14 +369,14 @@ export default function PedidoProveedor() {
                             <option value="LICORES">Licores</option>
                             <option value="CERVEZAS">Cervezas</option>
                         </select>
-                        <br /><br />
-                        <button style={{ marginLeft: "30%" }} onClick={AgregarProducto}>AGREGAR PRODUCTO</button>
+                        
+                        <button style={{ marginLeft: "50px" }} onClick={AgregarProducto}>AGREGAR PRODUCTO</button>
 
                     </div>
                     <div>
                         <img src={urlimagen} alt="Mi imagen" style={{ width: "300px", height: "150px" }} /><br />
                         <input type="file" name='file' onChange={handleImage} style={{ marginTop: "10px" }}></input><br />
-                        <button onClick={handleApi} style={{ marginTop: "10px", marginLeft: "90px" }} >Cargar Imagen</button>
+                        <button onClick={handleApi} style={{ marginTop: "10px", marginLeft: "30px" }} >Cargar Imagen</button>
                     </div>
                 </div>
             ) : <div style={{ textAlign: "center" }}>
@@ -387,11 +387,11 @@ export default function PedidoProveedor() {
 
 
             <br></br>
-            <div className="display-flex">
+            <div className="display-flex" style={{ marginLeft: '150px' }}>
                 <div style={{ height: "250px", width: "1000px", overflowY: "scroll" }}>
-                    <table className="table border shadow" style={{ width: '98%', marginLeft: '15px' }}>
+                    <table className="table border shadow" style={{ width: '100%'}}>
                         <thead>
-                            <tr>
+                            <tr className="columnas">
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio Unitario</th>
@@ -421,12 +421,12 @@ export default function PedidoProveedor() {
                     <br></br>
                     <br></br>
                     SubTotal: <input readOnly style={{ width: "25%", marginLeft: "2px" }} value={subtotal}></input><br></br>
-                    Iva: <input readOnly style={{ width: "25%", marginLeft: "43px" }} value={iva}></input><br></br>
-                    Total: <input readOnly style={{ width: "25%", marginLeft: "29px" }} value={pTotal} ></input><br></br>
+                    Iva 12%: <input readOnly style={{ width: "25%", marginLeft: "8px" ,marginTop: "5px"}} value={iva}></input><br></br>
+                    Total: <input readOnly style={{ width: "25%", marginLeft: "29px",marginTop: "5px" ,backgroundColor: "#ebadc3"}} value={pTotal} ></input><br></br>
                 </div>
             </div>
             <div>
-                <button className="btn btn-outline-primary" style={{ marginLeft: "30%", width: "10%" }} onClick={registrar}>Guardar</button>
+                <button className="btn btn-outline-primary" style={{ marginLeft: "37%", width: "10%" }} onClick={registrar}>Guardar</button>
             </div>
 
         </div>

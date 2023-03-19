@@ -165,12 +165,12 @@ export default function EditUsuario() {
                     <form onSubmit={(e) => Registrar(e)}>
                         <div>
                             <br></br>
-                            Cedula:
+                            Cédula:
                             <input
                                 placeholder="Ingrese su cedula"
                                 value={user.persona.cedula}
                                 onChange={handleCedulaChange}
-                                style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
+                                style={{ marginLeft: "20px", marginRight: "20px", width: "160px" }}
                                 type="number"
                                 maxLength={10}
                                 onInput={(e) => {
@@ -186,7 +186,7 @@ export default function EditUsuario() {
                             <br />
                             Nombre:
                             <input
-                                style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
+                                style={{ marginLeft: "10px", marginRight: "20px", marginTop: "3px", width: "160px" }}
                                 placeholder="Ingrese el nombre"
                                 value={user.persona.nombre}
                                 readOnly
@@ -199,7 +199,7 @@ export default function EditUsuario() {
                                 onChange={handleapellidoChange}
                                 style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
                             <br />
-                            Genero:
+                            Género:
                             <select
                                 value={user.persona.genero}
                                 onChange={handlegeneroChange}
@@ -254,7 +254,7 @@ export default function EditUsuario() {
                             </button>
                             <br /><br />
                             <button style={{ marginLeft: "170px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
-                            <button style={{ marginLeft: "20px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
+                            <button style={{ marginLeft: "20px" }}  className="btn btn-danger mx-2" onClick={cancelar}>CANCELAR</button>
 
 
 

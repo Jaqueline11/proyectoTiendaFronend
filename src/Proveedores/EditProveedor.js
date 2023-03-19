@@ -164,12 +164,12 @@ export default function EditProveedor() {
                         <form onSubmit={(e) => Registrar(e)}>
                             <div>
                                 <br></br>
-                                Cedula:
+                                Cédula:
                                 <input
                                     placeholder="Ingrese su cedula"
                                     value={user.persona.cedula}
                                     onChange={handleCedulaChange}
-                                    style={{ marginLeft: "20px", marginRight: "5px", width: "160px" }}
+                                    style={{ marginLeft: "20px", marginRight: "20px", width: "180px" }}
                                     type="text"
                                     readOnly
                                     maxLength={10}
@@ -181,11 +181,11 @@ export default function EditProveedor() {
                                     placeholder="Ingrese la direccion"
                                     value={user.persona.direccion}
                                     onChange={handledireccionChange}
-                                    style={{ marginLeft: "10px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "10px", marginTop: "3px", width: "180px" }} />
                                 <br />
                                 Nombre:
                                 <input
-                                    style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
+                                    style={{ marginLeft: "10px", marginRight: "20px", marginTop: "20px", width: "180px" }}
                                     placeholder="Ingrese el nombre"
                                     value={user.persona.nombre}
                                     readOnly
@@ -196,13 +196,13 @@ export default function EditProveedor() {
                                     value={user.persona.apellido}
                                     readOnly
                                     onChange={handleapellidoChange}
-                                    style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
+                                    style={{ marginLeft: "18px", marginTop: "3px", width: "180px" }} />
                                 <br />
-                                Genero:
+                                Género:
                                 <select
                                     value={user.persona.genero}
                                     onChange={handlegeneroChange}
-                                    style={{ marginLeft: "17px", marginTop: "3px", width: "160px" }} >
+                                    style={{ marginLeft: "17px", marginTop: "20px", width: "180px" }} >
                                     <option value="">Seleccione</option>
                                     <option value="MASCULINO">Masculino</option>
                                     <option value="FEMENINO">Femenino</option>
@@ -226,12 +226,12 @@ export default function EditProveedor() {
                                     onInput={(e) => {
                                         e.target.value = e.target.value.slice(0, 2)
                                     }}
-                                    style={{ marginLeft: "12px", marginTop: "10px" }} />
+                                    style={{ marginLeft: "12px", marginTop: "20px" }} />
                                 <br />
 
                                 <br /><br />
                                 <button style={{ marginLeft: "190px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
-                                <button style={{ marginLeft: "10px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
+                                <button style={{ marginLeft: "10px" }} className="btn btn-danger mx-2" onClick={cancelar}>CANCELAR</button>
 
 
 

@@ -13,7 +13,11 @@ export default function Reportepedidos() {
     const [searchResults, setSearchResults] = useState([]);
     const [users, setUsers] = useState([]);
     const [selectedType, setSelectedType] = useState('');
-
+    const styles = {
+        imprimirSolo: {
+          display: 'none',
+        },
+      };
 
   
 
@@ -53,8 +57,7 @@ export default function Reportepedidos() {
     const componenteRef=useRef();
     const gandeprint=useReactToPrint({
         content:()=>componenteRef.current,
-        documentTitle:'emp-data',
-        onAfterPrint:()=>alert('Print success'),
+        documentTitle:'emp-data'
        
     });
 
@@ -66,12 +69,13 @@ export default function Reportepedidos() {
 
     return (
         <div>
-              <button   class="btn btn-secondary  imprimir" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" onClick={gandeprint}>Imprimir</button>
+              <button   class="btn btn-secondary  imprimir" type="button"    onClick={gandeprint}>Imprimir</button>
         <div className="containermo" ref={componenteRef}>
           <h2>Lista de pedidos</h2>
           
           <br></br>
-                <table className="tabla-estilo">
+          <img style={styles.imprimirSolo} className="imprimir-solo" src="sc/fondo1.png" alt="Imagen a imprimir" />
+                <table className="tabla-estilo table border shadow">
                     <thead>
                         <tr className="columnas">
                             <th>Codigo</th>

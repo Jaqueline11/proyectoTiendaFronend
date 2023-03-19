@@ -164,7 +164,7 @@ export default function Crearusuario() {
           <form onSubmit={(e) => Registrar(e)}>
             <div>
               <br></br>
-              Cedula:
+              Cédula:
               <input
                 placeholder="Ingrese su cedula"
                 value={user.persona.cedula}
@@ -182,7 +182,7 @@ export default function Crearusuario() {
                 onChange={handledireccionChange}
                 style={{ marginLeft: "10px", marginTop: "3px", width: "160px" }} />
               <br />
-              Nombre:
+              Nombre: 
               <input
                 style={{ marginLeft: "10px", marginRight: "5px", marginTop: "3px", width: "160px" }}
                 placeholder="Ingrese el nombre"
@@ -195,7 +195,7 @@ export default function Crearusuario() {
                 onChange={handleapellidoChange}
                 style={{ marginLeft: "18px", marginTop: "3px", width: "160px" }} />
               <br />
-              Genero:
+              Género:
               <select
                 value={user.persona.genero}
                 onChange={handlegeneroChange}
@@ -248,7 +248,7 @@ export default function Crearusuario() {
               </button>
               <br /><br />
               <button style={{ marginLeft: "170px" }} type="submit" className="btn btn-outline-primary" >GUARDAR</button>
-              <button style={{ marginLeft: "20px" }} className="btn btn-outline-primary" onClick={cancelar}>CANCELAR</button>
+              <button style={{ marginLeft: "20px" }} className="btn btn-danger mx-2" onClick={cancelar}>CANCELAR</button>
 
 
 

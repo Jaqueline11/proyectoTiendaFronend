@@ -91,10 +91,12 @@ export default function Inventario() {
                             Filtrar
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Abarrotes</a></li>
                             <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Bebidas</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Tipo del producto 1</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>LICORES</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>ABARROTES</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Lacteos</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Snacks</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Licores</a></li>
+                            <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>Cervezas</a></li>
                             <li><a class="dropdown-item" href="#" onClick={handleFilterClick}>TODOS</a></li>
                         </ul>
 
@@ -109,30 +111,31 @@ export default function Inventario() {
                     <p>No se encontraron resultadosss</p>
                 </div>
             ) : (
-                <table className="tabla-estilo">
+                <table className="tabla-estilo table border shadow">
                     <thead>
                         <tr className="columnas">
                             <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
                             <th>Cantidad</th>
                             <th>valor</th>
                             <th>Fecha de caducidad</th>
                             <th>Tipo</th>
+                            <th>Imagen</th>
                         </tr>
                     </thead>
 
-                    <tbody className="fila">{
+                    <tbody className="filas">{
                         searchResults.map((inventario, index) => (
                             <tr key={index}>
                                 <td>{inventario.codigo}</td>
                                 <td>{inventario.nombre} </td>
-                                <td>{inventario.descripcion}</td>
                                 <td>{inventario.cantidad}</td>
                                 <td>{inventario.valor}</td>
                                 <td>{inventario.fecha_caducidad}</td>
                                 <td>{inventario.tipo}</td>
+                               <td><img src={inventario.imagen} alt="Mi imagen" width="150px" /></td> 
                             </tr>
+                            
                         ))
                     }
                     </tbody>

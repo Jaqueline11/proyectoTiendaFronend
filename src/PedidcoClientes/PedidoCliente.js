@@ -339,14 +339,14 @@ export default function PedidoCliente() {
 
             <div style={{ textAlign: 'left', marginLeft: '375px' }}>
                 <br></br>
-                Cédula:<input type="number" placeholder='Ingrese la cedula del cliente' style={{ width: '30%', marginLeft: '20px' }} value={cedula} onChange={handleChange}></input>
+                Cédula:<input type="number" placeholder='Ingrese la cédula del cliente' style={{ width: '30%', marginLeft: '20px' }} value={cedula} onChange={handleChange}></input>
                 <button style={{ marginLeft: '20px' }} onClick={handleClick}>{boton}</button>
                 <br></br><br></br>
-                Cliente: <input placeholder='Aqui aparecera el nombre del cliente' style={{ width: '30%', marginLeft: '18px' }} value={nombre} readonly></input><br></br><br></br>
-                Dirección: <input placeholder='Aqui aparecera la direccion del cliente' style={{ width: '30%' }} value={direccion} readonly></input>
+                Cliente: <input placeholder='Aquí aparecera el nombre del cliente' style={{ width: '30%', marginLeft: '18px' }} value={nombre} readonly></input><br></br><br></br>
+                Dirección: <input placeholder='Aquí aparecera la dirección del cliente' style={{ width: '30%' }} value={direccion} readonly></input>
 
             </div>
-            <hr></hr>
+            <hr style={{ marginLeft: '160px', marginRight: '140px' }}></hr>
             <div style={{ marginLeft: '150px', fontFamily: 'cursive' }}>
                 <label style={{ marginLeft: '10px' }}>
                     Buscar Producto
@@ -379,15 +379,15 @@ export default function PedidoCliente() {
                 />
 
                 <button style={{ marginLeft: "10px" }} onClick={AgregarProducto}>AGREGAR PRODUCTO</button>
-
+                <button style={{ marginLeft: "10px" }} >CANCELAR</button>
 
             </div>
             <br></br>
-            <div className="display-flex">
+            <div className="display-flex" style={{ marginLeft: '150px' }}>
                 <div style={{ height: "250px", width: "1000px", overflowY: "scroll" }}>
                     <table className="table border shadow" style={{ width: '98%', marginLeft: '15px' }}>
                         <thead>
-                            <tr>
+                            <tr  className="columnas">
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Producto</th>
                                 <th scope="col">Cantidad</th>
@@ -419,12 +419,12 @@ export default function PedidoCliente() {
                     <br></br>
                     <br></br>
                     SubTotal: <input readOnly style={{ width: "20%", marginLeft: "2px" }} value={subtotal}></input><br></br>
-                    Iva: <input readOnly style={{ width: "20%", marginLeft: "43px" }} value={iva}></input><br></br>
-                    Total: <input readOnly style={{ width: "20%", marginLeft: "29px" }} value={pTotal} ></input><br></br>
+                    Iva 12%: <input readOnly style={{ width: "20%", marginLeft: "8px" ,marginTop: "5px"}} value={iva}></input><br></br>
+                    Total: <input readOnly style={{ width: "20%", marginLeft: "29px",marginTop: "5px",backgroundColor: "#ebadc3"}} value={pTotal} ></input><br></br>
                 </div>
             </div>
             <div>
-                <button className="btn btn-outline-primary" style={{ marginLeft: "30%", width: "10%" }} onClick={registrar}>Guardar</button>
+                <button className="btn btn-outline-primary" style={{ marginLeft: "35%", width: "10%" }} onClick={registrar}>Guardar</button>
             </div>
 
 
