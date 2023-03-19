@@ -262,6 +262,33 @@ export default function PedidoProveedor() {
         setInventario({ ...inventario, tipo: nuevaCedula });
     };
 
+    function eliminarproductos(index, listas) {
+        const indiceAEliminar = index;
+        const nuevaLista = [...lista];
+        
+        const pt= listas.valor*listas.cantidad;
+        const precioto= pTotal-pt;
+        setPtotal(precioto);
+
+
+        const preciot = pTotal - listas.precio_total
+        console.log(listas.valor, "fas", pTotal)
+        console.log(preciot)
+        const ivat = preciot * 0.12;
+        const subtotalt = preciot - ivat;
+
+
+        
+        setIva(ivat.toFixed(2));
+        setSubtotal(subtotalt.toFixed(2));
+
+        nuevaLista.splice(indiceAEliminar, 1);
+        setLista(nuevaLista);
+
+
+
+    }
+
 
     return (
 
@@ -379,6 +406,10 @@ export default function PedidoProveedor() {
                                         <td style={{ width: '5%' }}>{lista.cantidad} </td>
                                         <td style={{ width: '5%' }}>{lista.valor}</td>
                                         <td style={{ width: '5%' }}>{lista.fecha_caducidad}</td>
+                                        <td style={{ width: '5%' }}>
+                                            <button onClick={() => eliminarproductos(index, lista)}> <FontAwesomeIcon icon={faTrashAlt} />
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))
                             }
