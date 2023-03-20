@@ -10,24 +10,18 @@ import axios from 'axios';
 export default function NavBar() {
   const navigate = useNavigate();
   const admin = localStorage.getItem('rol');
-  const usuario=localStorage.getItem('user');
-  const [iniciales, setIniciales]=useState("")
+  const iniciales=localStorage.getItem('ini');
   const [nombre, setNombre]=useState("");
+
+
   
-  const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/api/usuarios/getusuario/${usuario}`);
-    console.log(result.data)
-    const n=result.data.persona.nombre+' '+ result.data.persona.apellido;
-    setNombre(n);
-    const nombres = result.data.persona.nombre;
-    const apellidos = result.data.persona.apellido;
-    const iniciales = nombres.charAt(0) + apellidos.charAt(0);
-    setIniciales(iniciales);
-};
-loadUser();
+  console.log(iniciales)
+
 
   function cerrarsesion() {
     localStorage.setItem('token', '');
+    localStorage.setItem('ini', '');
+    localStorage.setItem('nombre', '');
     navigate('/');
 
   }
@@ -37,7 +31,7 @@ loadUser();
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">TIENDA</a>
+          <a class="navbar-brand" href="/vprincipal">TIENDA</a>
 
           <div class="dropdown">
             <button style={{ marginRight: "10px" }} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,7 +98,6 @@ loadUser();
         </div>
 
       </nav >
-      {nombre}
 
     </div >
   );
