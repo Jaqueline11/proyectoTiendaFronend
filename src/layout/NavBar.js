@@ -9,13 +9,23 @@ import axios from 'axios';
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const usuario=localStorage.getItem('user');
   const admin = localStorage.getItem('rol');
-  const iniciales=localStorage.getItem('ini');
-  const [nombre, setNombre]=useState("");
+  const iniciales = localStorage.getItem('ini');
+  const [nombre, setNombre] = useState("");
+  const [id, setId] = useState("");
 
 
-  
+
   console.log(iniciales)
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/api/usuarios/getusuario/${usuario}`);
+    console.log(result.data)
+    const id = result.data.usuario;
+    setId(id);
+
+  };
+  loadUser();
 
 
   function cerrarsesion() {
@@ -70,7 +80,7 @@ export default function NavBar() {
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-              <li><a class="dropdown-item" href="reportesp"><FontAwesomeIcon icon={faChartBar}/> REPORTE PEDIDOS</a></li>
+              <li><a class="dropdown-item" href="reportesp"><FontAwesomeIcon icon={faChartBar} /> REPORTE PEDIDOS</a></li>
               <li><a class="dropdown-item" href="reportes"><FontAwesomeIcon icon={faChartBar} />REPORTE CLIENTE</a></li>
 
             </ul>
@@ -81,14 +91,19 @@ export default function NavBar() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-              <div className="menu-containers">
+            <div className="menu-containers">
                 <div className="user-initialss">{iniciales}</div>
                 <div className="dropdown-menus">
-                  <button onClick={cerrarsesion} style={{width:"100px"}} >
+                  <button onClick={cerrarsesion} style={{ width: "150px", backgroundColor: "#ebadc3" }} >
                     <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
                   </button>
+                  <Link className="btn " style={{ width: "150px", marginTop: "5px", backgroundColor: "#ebadc3" }}  to={`/perfil/${id}`}>
+                    <FontAwesomeIcon icon={faUser} style={{ marginRight: "5px" }} />
+                     Mi Perfil
+                  </Link>
                 </div>
               </div>
+
 
 
 

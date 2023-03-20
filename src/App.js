@@ -18,6 +18,7 @@ import ListaCliente from './Cliente/ListaCliente';
 import PedidoProveedor from './PedidoProveedor/PedidoProveedor';
 import Reportepedidos from './Reportes/Reportepedidos';
 import Reportepedcliente from './Reportes/Reportepedcliente';
+import Perfil from './layout/Perfil';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route exact path="/vpedidoproveedor" element={<div><NavBar /><PedidoProveedor /></div>} />
         <Route exact path="/reportes" element={<div><NavBar /><Reportepedcliente /> </div>}/>
         <Route exact path="/reportesp" element={<div><NavBar /><Reportepedidos /> </div>}/>
+        <Route exact path="/perfil/:id" element={<div><NavBar /><Perfil /> </div>}/>
       </Routes>
       
     </Router>

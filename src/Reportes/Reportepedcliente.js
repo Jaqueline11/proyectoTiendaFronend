@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useRef} from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect } from 'react'
+import {useReactToPrint} from 'react-to-print';
 
 export default function Reportepedcliente() {
     const [ setError] = useState(null);
@@ -12,6 +13,11 @@ export default function Reportepedcliente() {
     const [searchResults] = useState([]);
     const [users, setUsers] = useState([]);
     const [selectedType] = useState('');
+    const styles = {
+        imprimirSolo: {
+          display: 'none',
+        },
+      };
 
 
   
@@ -48,6 +54,14 @@ export default function Reportepedcliente() {
         setUsers(result.data);
 
     };
+    /** */
+    const componenteRef=useRef();
+    const gandeprint=useReactToPrint({
+        content:()=>componenteRef.current,
+        documentTitle:'emp-data'
+       
+    });
+
 
 
 
@@ -57,9 +71,13 @@ export default function Reportepedcliente() {
 
 
     return (
-        <div className="containermi">
-          <h2>Lista de pedidos clientes</h2>
+        <div>
+              <button   class="btn btn-secondary  imprimir" type="button"    onClick={gandeprint}>Imprimir</button>
+        <div className="containermo" ref={componenteRef}>
+          <h2>Lista de pedidos cliente</h2>
+          
           <br></br>
+          <img style={styles.imprimirSolo} className="imprimir-solo" src="sc/fondo1.png" alt="Imagen a imprimir" />
                 <table className="tabla-estilo table border shadow">
                     <thead>
                         <tr className="columnas">
@@ -86,6 +104,7 @@ export default function Reportepedcliente() {
                 </table>
             
 
+        </div>
         </div>
     );
 }

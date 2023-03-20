@@ -7,6 +7,18 @@ body {
   margin: 0;
   padding: 0;
 }
+.centrar {
+  text-align: left;
+                              
+}
+.btneditar {
+  text-align: right;
+                              
+}
+.btncancelar {
+  text-align: center;
+                              
+}
 .login{
   margin: 0;
   height: 100vh;
@@ -38,6 +50,12 @@ body {
 
 .App-link {
   color: #61dafb;
+}
+.h8{
+  margin-left:100px;
+}
+.h6{
+  margin-left:100px;
 }
 
 @keyframes App-logo-spin {
@@ -102,6 +120,11 @@ input {
 .bg-custom {
   background-color: #5786aa;
 }
+.cancelar{
+  color: #e01a1a;
+  justify-content: center;
+}
+  
 
 .filas{
   border-bottom: 1px solid #746e6e;
