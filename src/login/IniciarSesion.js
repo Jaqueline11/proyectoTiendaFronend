@@ -28,6 +28,7 @@ export default function IniciarSesion() {
       console.log(nombres, apellidos, iniciales)
       localStorage.setItem('ini', iniciales)
       localStorage.setItem('nombres', n)
+      localStorage.setItem('user', usuario)
       console.log(localStorage.getItem('ini'))
   };
   
