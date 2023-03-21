@@ -23,6 +23,16 @@ export default function Clientes() {
     });
     console.log(id);
 
+    const token = localStorage.getItem('token');
+    console.log(token,"hola hola");
+            if (token == "") {
+                setError("Token No encontrado");
+
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000);
+
+            }
 
     /** */
     axios.interceptors.request.use(

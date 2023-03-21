@@ -1,9 +1,45 @@
 import React from 'react'
 import NavBar from './NavBar'
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function VentanaPrincipal() {
+
   const nombres = (localStorage.getItem('nombres'))
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+ 
   
+
+  axios.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('token');
+      console.log(token, "token hola")
+      if (token == "" || token == null) {
+        setError("Token No encontrado");
+
+        setTimeout(() => {
+          navigate('/')
+        }, 2000);
+
+      }
+
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+
+  );
+
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost:8080/api/inventario/listarinventario");
+
+};
+loadUsers();
+
 
 
 
@@ -29,6 +65,11 @@ export default function VentanaPrincipal() {
 
   return (
     <div>
+      {error && (
+        <div className="alert alert-danger text-center" role="alert">
+          {error}
+        </div>
+      )}
       <div style={{
         backgroundColor: '#F5F5F5',
         padding: '50px',
@@ -38,13 +79,13 @@ export default function VentanaPrincipal() {
         <h1 style={{ fontSize: '48px', margin: '0' }}>¡Bienvenido de vuelta!</h1>
         <p style={{ fontSize: '24px' }}>{nombres.toUpperCase()}</p>
       </div>
-      <div style={{textAlign: 'center'}}>
+      <div style={{ textAlign: 'center' }}>
         <h2 > 😊Ofertas Especiales😊</h2>
         <div style={{ whiteSpace: 'nowrap' }}>
           {ofertas.map((oferta) => (
             <div key={oferta.id} style={{ display: 'inline-block', marginRight: '10px' }}>
               <a href={oferta.url}>
-                <img src={oferta.imagen} alt={oferta.titulo} style={{width:"220px"}}/>
+                <img src={oferta.imagen} alt={oferta.titulo} style={{ width: "220px" }} />
               </a>
             </div>
           ))}
