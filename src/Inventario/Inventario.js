@@ -106,41 +106,40 @@ export default function Inventario() {
 
 
             {searchResults.length === 0 ? (
-                <div className="no-results">
-                    <img src="NoEncontrado.png" />
-                    <p>No se encontraron resultadosss</p>
-                </div>
-            ) : (
-                <table className="tabla-estilo table border shadow">
-                    <thead>
-                        <tr className="columnas">
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>valor</th>
-                            <th>Fecha de caducidad</th>
-                            <th>Tipo</th>
-                            <th>Imagen</th>
-                        </tr>
-                    </thead>
-
-                    <tbody className="filas">{
-                        searchResults.map((inventario, index) => (
-                            <tr key={index}>
-                                <td>{inventario.codigo}</td>
-                                <td>{inventario.nombre} </td>
-                                <td>{inventario.cantidad}</td>
-                                <td>{inventario.valor}</td>
-                                <td>{inventario.fecha_caducidad}</td>
-                                <td>{inventario.tipo}</td>
-                               <td><img src={inventario.imagen} alt="Mi imagen" width="80px" /></td> 
-                            </tr>
-                            
-                        ))
-                    }
-                    </tbody>
-                </table>
-            )}
+  <div className="no-results">
+    <img src="NoEncontrado.png" />
+    <p>No se encontraron resultadosss</p>
+  </div>
+) : (
+  <table className="tabla-estilo table border shadow">
+    <thead>
+      <tr className="columnas">
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>valor</th>
+        <th>Fecha de caducidad</th>
+        <th>Tipo</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody className="filas">
+      {searchResults.map((inventario, index) => (
+        <tr key={index} className={inventario.cantidad === 0 ? "rojo" : ""}>
+          <td>{inventario.codigo}</td>
+          <td>{inventario.nombre}</td>
+          <td>{inventario.cantidad}</td>
+          <td>{inventario.valor}</td>
+          <td>{inventario.fecha_caducidad}</td>
+          <td>{inventario.tipo}</td>
+          <td>
+            <img src={inventario.imagen} alt="Mi imagen" width="80px" height="80px" />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
 
         </div>
     );
