@@ -18,15 +18,7 @@ export default function NavBar() {
 
 
   console.log(iniciales)
-  const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/api/usuarios/getusuario/${usuario}`);
-    console.log(result.data)
-    const id = result.data.usuario;
-    setId(id);
-
-  };
-  loadUser();
-
+  
 
   function cerrarsesion() {
     localStorage.setItem('token', '');
@@ -97,7 +89,7 @@ export default function NavBar() {
                   <button onClick={cerrarsesion} style={{ width: "150px", backgroundColor: "#ebadc3" }} >
                     <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
                   </button>
-                  <Link className="btn " style={{ width: "150px", marginTop: "5px", backgroundColor: "#ebadc3" }}  to={`/perfil/${id}`}>
+                  <Link className="btn " style={{ width: "150px", marginTop: "5px", backgroundColor: "#ebadc3" }}  to={`/perfil/${usuario}`}>
                     <FontAwesomeIcon icon={faUser} style={{ marginRight: "5px" }} />
                      Mi Perfil
                   </Link>

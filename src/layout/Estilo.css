@@ -48,3 +48,14 @@
 .dropdown-menus button:hover {
   background-image: linear-gradient(to right, #FF4B2B, #FF416C);
 }
+.color-letra{
+  color: #5786aa;
+}
+.distancia{
+  margin-top: 50px;
+  
+    background-color: #F5F5F5;
+  }
+  .contenedor{
+    margin-top: 50px;
+  }

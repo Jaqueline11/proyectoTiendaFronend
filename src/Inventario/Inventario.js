@@ -133,7 +133,7 @@ export default function Inventario() {
                                 <td>{inventario.valor}</td>
                                 <td>{inventario.fecha_caducidad}</td>
                                 <td>{inventario.tipo}</td>
-                               <td><img src={inventario.imagen} alt="Mi imagen" width="150px" /></td> 
+                               <td><img src={inventario.imagen} alt="Mi imagen" width="80px" /></td> 
                             </tr>
                             
                         ))

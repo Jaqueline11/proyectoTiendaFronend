@@ -77,13 +77,16 @@ export default function Perfil() {
 
 
     return (
-        <div className="container">
+        <div className="container contenedor">
             <div className="row">
-                <div className="col-md-5 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className="text-center m-4" name="usuario">{usuario}</h2> 
+                <div className="col-md-5 offset-md-3 border rounded p-4 mt-2 shadow distancia">
+                
                     <div className='btneditar'><Link className="btn btn-outline-primary mx-2"to={`/edituser/${user.usuario}`} > Editar</Link></div>
                     <div className='h6'>
-                    <h8 className="h8r" >Datos personales</h8> <br></br><br></br>
+                    <h8 className="h8r color-letra" >Mi perfil</h8><br></br><br></br>
+                    <h8 className="h8r" >Usuario</h8>
+                    <h3  className='App-link'>{usuario}</h3> 
+                    <h8 className="h8r color-letra" >Datos personales</h8> <br></br><br></br>
                     <h4>Nombres</h4>
                     <h8 className="h8" >{user.persona.nombre} {user.persona.apellido}</h8>
                     <h4>Cédula</h4>
